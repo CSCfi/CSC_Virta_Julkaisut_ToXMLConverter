@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:julkaisut="urn:mace:funet.fi:julkaisut/2015/03/01" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" targetNamespace="urn:mace:funet.fi:julkaisut/2015/03/01" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.13" vc:minVersion="1.0">
+	<xs:include schemaLocation="tyypit.xsd">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Tiedonsiirtoelementtien tyypit.
+		</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<!-- juurielementti -->
+	<xs:element name="Julkaisut">
+		<xs:complexType>
+			<xs:sequence>
+				<!-- Julkaisu - yksittäisen julkaiun tiedot -->
+				<xs:element name="Julkaisu" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							
+							<xs:element name="OrganisaatioTunnus" type="julkaisut:OrganisaatioTunnusTyyppi" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Organisaatiotunnus</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							
+							<xs:element name="OrgSektoriKoodi" type="julkaisut:OrgSektoriKoodiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Organisaation luokittelu </xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							
+							<!-- Vuosiluku väliltä 2011 -> nykyinen  -->
+							<xs:element name="IlmoitusVuosi" type="julkaisut:VuosiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Vuosiluku muodossa YYYY</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							
+							<xs:element name="JulkaisunTunnus" type="julkaisut:JulkaisunTunnusTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisun yksilöivä tunniste</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							
+							<xs:element name="YhteisjulkaisunTunnus" type="julkaisut:JulkaisunTunnusTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Yhteisjulkaisun yksilöivä tunniste</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							
+							<xs:element name="JulkaisunTilaKoodi" type="julkaisut:JulkaisunTilaKoodiTyyppi" default="1" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisun tila, tässä raportoidaan julkaisun valmiusaste, tietovaranto asettaa tämän elementin</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							
+							<xs:element name="JulkaisunOrgTunnus" type="julkaisut:JulkaisunOrgTunnusTyyppi" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Korkeakoulun oma tunnistenumero julkaisulle</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="JulkaisunOrgYksikot" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="YksikkoKoodi"  minOccurs="0" maxOccurs="unbounded">
+										  <xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="julkaisut:JulkaisunOrgYksikkoKoodiTyyppi">
+														<xs:attribute name="Vanhempi" type="julkaisut:JulkaisunOrgYksikkoKoodiTyyppi" use="optional"/>
+													</xs:extension>
+												</xs:simpleContent>
+										  </xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="JulkaisuVuosi" type="julkaisut:VuosiTyyppi" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Vuosi, jolloin julkaisu on julkaistu ensimmäistä kertaa versiona, jossa on täydelliset viitetiedot.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="JulkaisunNimi" type="julkaisut:JulkaisunNimiTyyppi" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisun nimi siten kun se on artikkelissa tai teoksessa mainittu. Vieraskielisen julkaisun nimi voidaan tarvittaessa raportoida translitteroituna versiona.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="TekijatiedotTeksti" type="julkaisut:TekijatiedotTekstiTyyppi" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisun täydelliset tekijätiedot siinä muodossa ja järjestyksessä, jossa ne on listattu alkuperäisessä julkaisussa tai lähdetietokannassa.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="TekijoidenLkm" type="julkaisut:TekijoidenLkmTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisun tekijöiden kokonaislukumäärä. Jos ylittää 50, riittää mer-kintä ”50”. </xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="SivunumeroTeksti" type="julkaisut:SivunumeroTekstiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisun sivunumerot, joilla artikkeli on ilmestynyt siinä muodossa kuin ne on esitetty alkuperäisessä artikkelissa tai lähdetietokannassa.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Artikkelinumero" type="julkaisut:ArtikkelinumeroTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Artikkelinumero, jolla artikkeli on ilmestynyt (jos olemassa) siinä muodossa kuin ne on esitetty alkuperäisessä artikkelissa tai lähdetietokannassa.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							
+							
+							<xs:element name="Avainsanat"  minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="AvainsanaTeksti" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation xml:lang="fi">Artikkelin avainsanat</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="julkaisut:AvainsanaTekstiTyyppi">
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							
+							
+							<xs:element name="ISBN" type="julkaisut:ISBNTyyppi" minOccurs="0" maxOccurs="2">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisun ISBN-tunniste</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="JufoTunnus" type="julkaisut:JufoTunnusTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisukanavan Jufo-ID-tunniste</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="JufoLuokkaKoodi" type="julkaisut:JufoLuokkaKoodiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisukanavan Jufo-tasoluokka</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="JulkaisumaaKoodi" type="julkaisut:JulkaisumaaKoodiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Lehden, sarjan, monografian tai emojulkaisun julkaisumaa </xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="LehdenNimi" type="julkaisut:LehdenNimiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Lehden/sarjan nimi mahdollisimman täydellisenä ja kokonaan auki kirjoitettuna (ei lyhenteitä). </xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ISSN" type="julkaisut:ISSNTyyppi" minOccurs="0" maxOccurs="2">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Lehden, monografiaa tai emojulkaisua julkaisseen sarjan ISSN-numero ensisijaisesti painetun version mukaisesti. Jos painettua versiota ei ole, ilmoitetaan elektronisen version ISSN-numero.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="VolyymiTeksti" type="julkaisut:VolyymiTekstiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Lehden tai sarjan volyymi, jossa artikkeli on ilmestynyt.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="LehdenNumeroTeksti" type="julkaisut:LehdenNumeroTekstiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Lehden tai sarjan numero, jossa artikkeli on ilmestynyt.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="KonferenssinNimi" type="julkaisut:KonferenssinNimiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Konferenssin vakiintunut nimi</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="KustantajanNimi" type="julkaisut:KustantajanNimiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisun kustantajan nimi mahdollisimman täydellisenä ja koko-naan auki kirjoitettuna </xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="KustannuspaikkaTeksti" type="julkaisut:KustannuspaikkaTekstiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisun kustantajan nimen yhteydessä ilmoitettu paikkakunta tai paikkakunnat.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="EmojulkaisunNimi" type="julkaisut:EmojulkaisunNimiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Toimitetun teoksen nimi, jossa artikkeli on julkaistu. </xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="EmojulkaisunToimittajatTeksti" type="julkaisut:EmojulkaisunToimittajatTekstiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Toimitetun teoksen toimittajat siinä muodossa ja järjestyksessä, jossa ne on listattu alkuperäisessä julkaisussa tai lähdetietokannassa.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="JulkaisutyyppiKoodi" type="julkaisut:JulkaisutyyppiKoodiTyyppi" minOccurs="1" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisutyyppiluokituksen mukainen luokka</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="TieteenalaKoodit" minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="TieteenalaKoodi" minOccurs="0" maxOccurs="6">
+											<xs:annotation>
+												<xs:documentation xml:lang="fi">1-6 tieteenalaa mukaan siinä järjestyksessä, mitä tieteenalaa julkaisu eniten koskee</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="julkaisut:TieteenalaKooditTyyppi">
+														<xs:attribute name="JNro" type="julkaisut:TKAlaAttribuutti" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="KoulutusalaKoodit" minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="KoulutusalaKoodi" minOccurs="0" maxOccurs="6">
+											<xs:annotation>
+												<xs:documentation xml:lang="fi">1-6 koulutusalaa mukaan siinä järjestyksessä, mitä tieteenalaa julkaisu eniten koskee</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="julkaisut:KoulutusalaKooditTyyppi">
+														<xs:attribute name="JNro" type="julkaisut:TKAlaAttribuutti" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="YhteisjulkaisuKVKytkin" type="julkaisut:KyllaEiTyyppi"  minOccurs="0" maxOccurs="1" nillable="true">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Tekijöistä vähintään yksi on affilioitunut muuhun kuin suomalaisen organisaatioon (myös jos tekijällä on affiliaatio sekä suomalainen että ulkomaalaiseen organisaatioon). </xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="YhteisjulkaisuSHPKytkin" type="julkaisut:KyllaEiTyyppi"  minOccurs="0" maxOccurs="1" nillable="true">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Tekijöistä vähintään yksi on affilioitunut yliopistolliseen sairaanhoitopiiriin</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="YhteisjulkaisuTutkimuslaitosKytkin" type="julkaisut:KyllaEiTyyppi"  minOccurs="0" maxOccurs="1" nillable="true">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Tekijöistä vähintään yksi on affilioitunut valtion tutkimuslaitokseen</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="YhteisjulkaisuMuuKytkin" type="julkaisut:KyllaEiTyyppi"  minOccurs="0" maxOccurs="1" nillable="true">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Tekijöistä vähintään yksi on affilioitunut muuhun kotimaiseen tutkimusorganisaatioon kuin korkeakouluun, yliopistolliseen sairaanhoitopiiriin tai  valtion tutkimuslaitokseen</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="JulkaisunKansainvalisyysKytkin" type="julkaisut:KyllaEiTyyppi"  minOccurs="0" maxOccurs="1" nillable="true">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Kotimaisen julkaisun julkaisija on suomalainen tai se on ensisijai-sesti julkaistu Suomessa. Kansainvälisen julkaisun julkaisija ei ole suomalainen tai se on ensisijaisesti julkaistu muualla kuin Suomessa.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="JulkaisunKieliKoodi" type="julkaisut:JulkaisunKieliKoodiTyyppi" minOccurs="0" maxOccurs="1" nillable="true">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Kieli, jolla julkaisu on kirjoitettu. Vuoden 2003 TK:n kielikoodiston mukainen arvo</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="AvoinSaatavuusKoodi" type="julkaisut:AvoinSaatavuusKoodiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisun avoin saatavuus seuraavan luokituksen mukaisesti: ei open access/ open access/open access, rinnakkaistallennettu/ei tietoa</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="EVOjulkaisuKytkin" type="julkaisut:KyllaEiTyyppi"  minOccurs="0" maxOccurs="1" nillable="true">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Ns. EVO-hakemukseen (erityisvaltionosuushakemus) sosiaali- ja terveysministeriölle tulevat artikkelit</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="YhteisjulkaisuYritysKytkin" type="julkaisut:KyllaEiTyyppi"  minOccurs="0" maxOccurs="1" nillable="true">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">yhteisjulkaisu yrityksen kanssa</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="RinnakkaistallennettuKytkin" type="julkaisut:KyllaEiTyyppi"  minOccurs="0" maxOccurs="1" nillable="true">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisu rinnakkaistallennettu</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+								<xs:element name="Rinnakkaistallennettu"  minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="RinnakkaistallennusOsoiteTeksti" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation xml:lang="fi">Tallennetun version verkko-osoite vapaamuotoinen tekstikenttä, pakollinen jos JulkaisuRinnakkaistallennettu=1</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="julkaisut:PysyvaOsoiteTekstiTyyppi">
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>	
+							<xs:element name="DOI" type="julkaisut:DOITyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">DOI-tunniste</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="PysyvaOsoiteTeksti" type="julkaisut:PysyvaOsoiteTekstiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisun pysyviin tunnisteisiin (esim. DOI, URN tai handle) perus-tuva verkko-osoite, joka vie suoraan julkaisun kokotekstiversioon (vapaasti saatavilla olevaan tai kustantajan palvelimella sijaitse-vaan käyttöoikeudeltaan rajoitettuun versioon).</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+								<xs:element name="JuuliOsoiteTeksti" type="julkaisut:PysyvaOsoiteTekstiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Linkki julkaisun tietoihin Juulissa</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="LahdetietokannanTunnus" type="julkaisut:LahdetietokannanTunnusTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisun tunniste tai ID-numero tietokannassa, josta sen tietue on haravoitu </xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							
+							<xs:element name="Tekijat">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Tekija" minOccurs="1" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Sukunimi" type="julkaisut:NimiTyyppi" minOccurs="1" maxOccurs="1"/>
+													<xs:element name="Etunimet" type="julkaisut:NimiTyyppi" minOccurs="0" maxOccurs="1"/>
+													<xs:element name="Yksikot" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="YksikkoKoodi"  minOccurs="0" maxOccurs="unbounded">
+																  <xs:complexType>
+																	<xs:simpleContent>
+																		<xs:extension base="julkaisut:JulkaisunOrgYksikkoKoodiTyyppi">
+																		<xs:attribute name="Vanhempi" type="julkaisut:JulkaisunOrgYksikkoKoodiTyyppi" use="optional"/>
+																		</xs:extension>
+																	</xs:simpleContent>
+																</xs:complexType>
+															</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="ORCID" type="julkaisut:ORCIDTyyppi" minOccurs="0" maxOccurs="1"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							
+							<xs:element name="Hankkeet" minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Hanke" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="HankenumeroTeksti" type="julkaisut:HankenumeroTyyppi" minOccurs="0" maxOccurs="1"/>
+													<xs:element name="RahoittajaOrgTunnus" type="julkaisut:RahoittajaOrganisaatioTunnusTyyppi" minOccurs="0" maxOccurs="1"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						
+							<xs:element name="YhteisJulkaisu" minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="JulkaisunTunnus" type="julkaisut:JulkaisunTunnusTyyppi" minOccurs="0" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation xml:lang="fi">Julkaisun yksilöivä tunniste</xs:documentation>
+										</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							
+						</xs:sequence>
+						
+						<!--
+						<xs:assert test="if(contains('A1 A2 A3 A4 B1 B2 B3 C1 C2',julkaisut:JulkaisutyyppiKoodi)) then (julkaisut:ISBN or julkaisut:ISSN) else true()">
+							<xs:annotation>
+								<xs:documentation>ISBN tai ISSN on pakollinen julkaisutyypeille A1, A2, A3, A4, B1, B2, B3, C1, C2</xs:documentation>
+							</xs:annotation>
+						</xs:assert>
+						-->
+						
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

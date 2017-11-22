@@ -1,0 +1,1192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xhtml="http://www.w3.org/1999/xhtml" 
+	xmlns:julkaisut="urn:mace:funet.fi:julkaisut/2015/03/01" 
+	targetNamespace="urn:mace:funet.fi:julkaisut/2015/03/01" 
+	elementFormDefault="qualified" 
+	attributeFormDefault="unqualified" 
+	version="1.13">
+	
+	<xs:simpleType name="RahoittajaOrganisaatioTunnusTyyppi">
+		<xs:annotation>
+		<xs:documentation xml:lang="fi">
+		Hankkeen rahoittaneen organisaation tunnus 	
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="OrganisaatioTunnusTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Yliopistotunnuksen on vastattava tiedonkeruukäsikirjan liitteenä olevan koodistoa yliopistoista. 
+			Yliopistotunnuksiin lisätään etunollat ja tarkistus suoritetaan nollien lisäyksen jälkeen. Yliopistotunnus 5 merkkiä.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+			<xs:enumeration value="01903"/> <!-- AA -->
+			<xs:enumeration value="02535"/> <!-- ARCADA -->
+			<xs:enumeration value="10076"/> <!-- AYO -->
+			<xs:enumeration value="02536"/> <!-- CENTRIA -->
+			<xs:enumeration value="02623"/> <!-- DIAK -->
+			<xs:enumeration value="10056"/> <!-- HAAGAHEL -->
+			<xs:enumeration value="02467"/> <!-- HAMK -->
+			<xs:enumeration value="02631"/> <!-- HUMAK -->
+			<xs:enumeration value="01901"/> <!-- HY -->
+			<xs:enumeration value="10088"/> <!-- ISY -->
+			<xs:enumeration value="02504"/> <!-- JAMK -->
+			<xs:enumeration value="01906"/> <!-- JY -->
+			<xs:enumeration value="02473"/> <!-- KAMK -->
+			<xs:enumeration value="02469"/> <!-- KARELIA -->
+			<xs:enumeration value="02608"/> <!-- KYAMK -->
+			<xs:enumeration value="02470"/> <!-- LAMK -->
+			<xs:enumeration value="10108"/> <!-- LAPINAMK -->
+			<xs:enumeration value="02629"/> <!-- LAUREA -->
+			<xs:enumeration value="01918"/> <!-- LAY -->
+			<xs:enumeration value="01914"/> <!-- LTY -->
+			<xs:enumeration value="02506"/> <!-- MAMK -->
+			<xs:enumeration value="10065"/> <!-- METROPOL -->
+			<xs:enumeration value="02358"/> <!-- MPKK -->
+			<xs:enumeration value="10066"/> <!-- NOVIA -->
+			<xs:enumeration value="02471"/> <!-- OAMK -->
+			<xs:enumeration value="01904"/> <!-- OY -->
+			<xs:enumeration value="02557"/> <!-- POLAMK -->
+			<xs:enumeration value="02609"/> <!-- SAIMAA -->
+			<xs:enumeration value="02507"/> <!-- SAMK -->
+			<xs:enumeration value="02537"/> <!-- SAVONIA -->
+			<xs:enumeration value="02472"/> <!-- SEAMK -->
+			<xs:enumeration value="01910"/> <!-- SHH -->
+			<xs:enumeration value="10103"/> <!-- TAIY -->
+			<xs:enumeration value="02630"/> <!-- TAMK -->
+			<xs:enumeration value="01905"/> <!-- TaY -->
+			<xs:enumeration value="01915"/> <!-- TTY -->
+			<xs:enumeration value="02509"/> <!-- TUAMK -->
+			<xs:enumeration value="10089"/> <!-- TY -->
+			<xs:enumeration value="02627"/> <!-- VAMK -->
+			<xs:enumeration value="01913"/> <!-- VY -->
+			<xs:enumeration value="01717"/>  <!--Teatterikorkeakoulu -->
+			<xs:enumeration value="01740"/>  <!--Kuvataideakatemia -->
+			<xs:enumeration value="01742"/>  <!--Sibelius-Akatemia -->
+			<xs:enumeration value="10103"/>   <!--Taideyliopisto -->
+			<xs:enumeration value="02505"/>    <!--Kemi-Tornion ammattikorkeakoulu -->
+			<xs:enumeration value="02538"/>    <!--Rovaniemen ammattikorkeakoulu -->
+			<xs:enumeration value="4080015"/>	<!-- Elintarviketurvallisuusvirasto -->
+			<xs:enumeration value="5040011"/>	<!-- Geologian tutkimuskeskus --> 
+			<xs:enumeration value="4940015"/>	<!-- Ilmatieteen laitos -->
+			<xs:enumeration value="4100010"/>	<!-- Luonnonvarakeskus -->
+			<xs:enumeration value="4020217"/>	<!-- Maanmittauslaitos -->
+			<xs:enumeration value="7020017"/>	<!-- Suomen ympäristökeskus -->
+			<xs:enumeration value="5550012"/>	<!-- Säteilyturvakeskus -->
+			<xs:enumeration value="26473754"/>       <!-- Teknologian tutkimuskeskus VTT Oy -->
+			<xs:enumeration value="5610017"/>	<!-- Terveyden ja hyvinvoinnin laitos -->
+			<xs:enumeration value="02202669"/>	<!-- Työterveyslaitos -->
+			<xs:enumeration value="1120017"/>	<!-- Ulkopoliittinen instituutti -->
+			<xs:enumeration value="3060016"/>	<!-- Valtion taloudellinen tutkimuskeskus -->
+			<xs:enumeration value="02022481"/>	<!-- Suomen Pankki -->
+			<xs:enumeration value="558005"/>	        <!-- Lääkealan turvallisuus- ja kehittämiskeskus -->
+			<xs:enumeration value="411001"/>	        <!-- Maa- ja elintarviketalouden tutkimuskeskus -->
+			<xs:enumeration value="404001"/>	        <!-- Metsäntutkimuslaitos -->
+			<xs:enumeration value="15675350"/>       <!-- Helsingin seudun yliopistollisen keskussairaalan erityisvastuualue -->
+			<xs:enumeration value="08265978"/>	<!-- Tampereen yliopistollisen sairaalan erityisvastuualue -->
+			<xs:enumeration value="06794809"/>	<!-- Oulun yliopistollisen sairaalan erityisvastuualue -->
+			<xs:enumeration value="08282559"/>	<!-- Turun yliopistollisen keskussairaalan erityisvastuualue -->
+			<xs:enumeration value="01714953"/>	<!-- Kuopion yliopistollisen sairaalan erityisvastuualue -->
+			<xs:enumeration value="99999"/> 		<!-- Tuntematon organisaatio / Yhteisjulkaisun Organisaatio -->
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="OrgSektoriKoodiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Organisaation luokittelu 
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:totalDigits value="2"/>
+			  <xs:enumeration value="0"/> <!-- Tuntematon -->
+			  <xs:enumeration value="1"/> <!-- Yliopisto -->
+			  <xs:enumeration value="2"/> <!-- Ammattikorkeakoulu -->
+			  <xs:enumeration value="3"/> <!-- Tutkimuslaitos -->
+			  <xs:enumeration value="4"/> <!-- Yliopistollisen sairaalan erityisvastuualue -->
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="VuosiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Vuosiluku neljällä numerolla
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:totalDigits value="4"/>
+			<xs:minInclusive value="1900"/>
+			<xs:maxInclusive value="9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	<xs:simpleType name="JulkaisunTunnusTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Vapaa tekstikenttä
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	
+	
+	<xs:simpleType name="JulkaisunTilaKoodiTyyppi">
+		<xs:annotation>
+		<xs:documentation xml:lang="fi">
+		Arvo -1,0,1,2 tai 9. Mikäli kaikki tiedonkeruun vaatimukset täyttyvät, tietovaranto CSC:llä voi antaa julkaisulle koodiarvon 2.
+		
+		koodiarvot:
+		-1-> "HYLÄTTY" Julkaisun tietoja ei siirretä tietovarantoon tai julkaisu poistetaan.
+		0 -> "KESKEN" Julkaisun tietoja ei siirretä Juuliin tai raportoida OKM-tiedonkeruussa, mutta voidaan siirtää tiettyihin erikseen sovittaviin palveluihin.
+		1 -> "VALMIS" Julkaisun tiedot voidaan julkaista tietovarannon rajapintojen kautta ja siirtää Juuliin. 
+		Tiedoissa on kuitenkin puutteita, eikä niitä voida vielä käyttää osana OKM:n tiedonkeruuta.
+		2 -> "VALMIS/OKM" Julkaisu voidaan raportoida Juulissa ja se sisältää kaikki OKM-tiedonkeruussa julkaisutyypiltä vaadittavat arvot
+		9 -> "Yhteisjulkaisu" Julkaisu raportoidaan yhteisjulkaisuna
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:totalDigits value="5"/>
+			<xs:enumeration value="-1"/>
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	<xs:simpleType name="JulkaisunOrgTunnusTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Vapaa tekstikenttä
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	
+	<xs:simpleType name="JulkaisunOrgYksikkoKoodiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Vapaa tekstikenttä
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	
+	<xs:simpleType name="JulkaisunNimiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Ei saa olla tyhjä. Merkkijono ei saa olla yli 500 merkkiä pitkä.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	
+	<xs:simpleType name="TekijatiedotTekstiTyyppi">
+		<xs:annotation>
+		<xs:documentation xml:lang="fi">
+			Ei saa olla tyhjä. Merkkijono ei saa olla yli 800 merkkiä pitkä.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="800"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+		<xs:simpleType name="TekijoidenLkmTyyppi">
+		<xs:annotation>
+		<xs:documentation xml:lang="fi">
+			Positiivinen kokonaisluku, ei saa olla nolla.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	<xs:simpleType name="SivunumeroTekstiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Vapaa tekstikenttä
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+			<!-- <xs:pattern value="([0-9])*-([0-9])*|([0-9])*"/> -->
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	<xs:simpleType name="ArtikkelinumeroTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Vapaa tekstikenttä
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	<xs:simpleType name="ISBNTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			ISBN-koodin oikeellisuus tarkistetaan aina tarkistemerkin avulla. Numerosarjaan toisinaan kuuluvilla väliviivoilla tai välilyönneillä ei ole merkitystä 
+			oikeellisuuden kannalta.10-merkkisen ISBN-koodin tarkistemerkki tarkistetaan Seuraavalla algoritmilla: Numeroita painotetaan kertoimilla, 
+			jotka ovat samat kuin numeroiden positiot 1..9 vasemmalta oikealle. Tulot lasketaan yhteen ja summa jaetaan 11:llä. Jos jakojäännös on 0..9, 
+			se on tarkistusmerkki. Jos jakojäännös on 10, tarkistusmerkki on X (= 10 roomalaisilla numeroilla). 
+			Menetelmä on kuvattu sivulla http://isbn-information.com/10-digit-isbn.html. 13-merkkisen ISBN-koodin tarkistemerkin tarkistus on kuvattu 
+			sivulla http://isbn-information.com/13-digit-isbn.html.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+			<!-- <xs:pattern value="ISBN(-1(?:(0)|3))?:?\x20+(?(1)(?(2)(?:(?=.{13}$)\d{1,5}([ -])\d{1,7}\3\d{1,6}\3(?:\d|x)$)|(?:(?=.{17}$)97(?:8|9)([ -])\d{1,5}\4\d{1,7}\4\d{1,6}\4\d$))|(?(.{13}$)(?:\d{1,5}([ -])\d{1,7}\5\d{1,6}\5(?:\d|x)$)|(?:(?=.{17}$)97(?:8|9)([ -])\d{1,5}\6\d{1,7}\6\d{1,6}\6\d$)))"/> -->
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="AvainsanaTekstiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Vapaa tekstikenttä, artikkelin avainsanat.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+		
+	<xs:simpleType name="JufoTunnusTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Julkaisufoorumin (http://www.tsv.fi/julkaisufoorumi/haku.php) luokituksen mukainen 4/5 -numeroinen arvo, esim. 5003. 
+			Arvot testataan julkaisukanavatietokantaa vasten.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	<xs:simpleType name="JufoLuokkaKoodiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Arvo 0,1,2, 3 tai arvioimaton (?). Nämä lisätään CSC:llä 
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1"/>
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	
+	<xs:simpleType name="JulkaisumaaKoodiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Julkaisumaa saa olla tyhjä. Jos julkaisumaa on annettu, sen tulee olla Tilastokeskuksen Valtiot ja maat 2007 -koodiston mukainen arvo.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+			<xs:enumeration value="004"/>
+			<xs:enumeration value="008"/>
+			<xs:enumeration value="010"/>
+			<xs:enumeration value="012"/>
+			<xs:enumeration value="016"/>
+			<xs:enumeration value="020"/>
+			<xs:enumeration value="024"/>
+			<xs:enumeration value="028"/>
+			<xs:enumeration value="031"/>
+			<xs:enumeration value="032"/>
+			<xs:enumeration value="036"/>
+			<xs:enumeration value="040"/>
+			<xs:enumeration value="044"/>
+			<xs:enumeration value="048"/>
+			<xs:enumeration value="050"/>
+			<xs:enumeration value="051"/>
+			<xs:enumeration value="052"/>
+			<xs:enumeration value="056"/>
+			<xs:enumeration value="060"/>
+			<xs:enumeration value="064"/>
+			<xs:enumeration value="068"/>
+			<xs:enumeration value="070"/>
+			<xs:enumeration value="072"/>
+			<xs:enumeration value="074"/>
+			<xs:enumeration value="076"/>
+			<xs:enumeration value="084"/>
+			<xs:enumeration value="086"/>
+			<xs:enumeration value="090"/>
+			<xs:enumeration value="092"/>
+			<xs:enumeration value="096"/>
+			<xs:enumeration value="100"/>
+			<xs:enumeration value="104"/>
+			<xs:enumeration value="108"/>
+			<xs:enumeration value="112"/>
+			<xs:enumeration value="116"/>
+			<xs:enumeration value="120"/>
+			<xs:enumeration value="124"/>
+			<xs:enumeration value="132"/>
+			<xs:enumeration value="136"/>
+			<xs:enumeration value="140"/>
+			<xs:enumeration value="144"/>
+			<xs:enumeration value="148"/>
+			<xs:enumeration value="152"/>
+			<xs:enumeration value="156"/>
+			<xs:enumeration value="158"/>
+			<xs:enumeration value="162"/>
+			<xs:enumeration value="166"/>
+			<xs:enumeration value="170"/>
+			<xs:enumeration value="174"/>
+			<xs:enumeration value="175"/>
+			<xs:enumeration value="178"/>
+			<xs:enumeration value="180"/>
+			<xs:enumeration value="184"/>
+			<xs:enumeration value="188"/>
+			<xs:enumeration value="191"/>
+			<xs:enumeration value="192"/>
+			<xs:enumeration value="196"/>
+			<xs:enumeration value="203"/>
+			<xs:enumeration value="204"/>
+			<xs:enumeration value="208"/>
+			<xs:enumeration value="212"/>
+			<xs:enumeration value="214"/>
+			<xs:enumeration value="218"/>
+			<xs:enumeration value="222"/>
+			<xs:enumeration value="226"/>
+			<xs:enumeration value="231"/>
+			<xs:enumeration value="232"/>
+			<xs:enumeration value="233"/>
+			<xs:enumeration value="234"/>
+			<xs:enumeration value="238"/>
+			<xs:enumeration value="239"/>
+			<xs:enumeration value="242"/>
+			<xs:enumeration value="246"/>
+			<xs:enumeration value="248"/>
+			<xs:enumeration value="250"/>
+			<xs:enumeration value="254"/>
+			<xs:enumeration value="258"/>
+			<xs:enumeration value="260"/>
+			<xs:enumeration value="262"/>
+			<xs:enumeration value="266"/>
+			<xs:enumeration value="268"/>
+			<xs:enumeration value="270"/>
+			<xs:enumeration value="275"/>
+			<xs:enumeration value="276"/>
+			<xs:enumeration value="288"/>
+			<xs:enumeration value="292"/>
+			<xs:enumeration value="296"/>
+			<xs:enumeration value="300"/>
+			<xs:enumeration value="304"/>
+			<xs:enumeration value="308"/>
+			<xs:enumeration value="312"/>
+			<xs:enumeration value="316"/>
+			<xs:enumeration value="320"/>
+			<xs:enumeration value="324"/>
+			<xs:enumeration value="328"/>
+			<xs:enumeration value="332"/>
+			<xs:enumeration value="334"/>
+			<xs:enumeration value="336"/>
+			<xs:enumeration value="340"/>
+			<xs:enumeration value="344"/>
+			<xs:enumeration value="348"/>
+			<xs:enumeration value="352"/>
+			<xs:enumeration value="356"/>
+			<xs:enumeration value="360"/>
+			<xs:enumeration value="364"/>
+			<xs:enumeration value="368"/>
+			<xs:enumeration value="372"/>
+			<xs:enumeration value="376"/>
+			<xs:enumeration value="380"/>
+			<xs:enumeration value="384"/>
+			<xs:enumeration value="388"/>
+			<xs:enumeration value="392"/>
+			<xs:enumeration value="398"/>
+			<xs:enumeration value="400"/>
+			<xs:enumeration value="404"/>
+			<xs:enumeration value="408"/>
+			<xs:enumeration value="410"/>
+			<xs:enumeration value="414"/>
+			<xs:enumeration value="417"/>
+			<xs:enumeration value="418"/>
+			<xs:enumeration value="422"/>
+			<xs:enumeration value="426"/>
+			<xs:enumeration value="428"/>
+			<xs:enumeration value="430"/>
+			<xs:enumeration value="434"/>
+			<xs:enumeration value="438"/>
+			<xs:enumeration value="440"/>
+			<xs:enumeration value="442"/>
+			<xs:enumeration value="446"/>
+			<xs:enumeration value="450"/>
+			<xs:enumeration value="454"/>
+			<xs:enumeration value="458"/>
+			<xs:enumeration value="462"/>
+			<xs:enumeration value="466"/>
+			<xs:enumeration value="470"/>
+			<xs:enumeration value="474"/>
+			<xs:enumeration value="478"/>
+			<xs:enumeration value="480"/>
+			<xs:enumeration value="484"/>
+			<xs:enumeration value="492"/>
+			<xs:enumeration value="496"/>
+			<xs:enumeration value="498"/>
+			<xs:enumeration value="499"/>
+			<xs:enumeration value="500"/>
+			<xs:enumeration value="504"/>
+			<xs:enumeration value="508"/>
+			<xs:enumeration value="512"/>
+			<xs:enumeration value="516"/>
+			<xs:enumeration value="520"/>
+			<xs:enumeration value="524"/>
+			<xs:enumeration value="528"/>
+			<xs:enumeration value="530"/>
+			<xs:enumeration value="531"/>
+			<xs:enumeration value="533"/>
+			<xs:enumeration value="534"/>
+			<xs:enumeration value="535"/>
+			<xs:enumeration value="540"/>
+			<xs:enumeration value="548"/>
+			<xs:enumeration value="554"/>
+			<xs:enumeration value="558"/>
+			<xs:enumeration value="562"/>
+			<xs:enumeration value="566"/>
+			<xs:enumeration value="570"/>
+			<xs:enumeration value="574"/>
+			<xs:enumeration value="578"/>
+			<xs:enumeration value="580"/>
+			<xs:enumeration value="581"/>
+			<xs:enumeration value="583"/>
+			<xs:enumeration value="584"/>
+			<xs:enumeration value="585"/>
+			<xs:enumeration value="586"/>
+			<xs:enumeration value="591"/>
+			<xs:enumeration value="598"/>
+			<xs:enumeration value="600"/>
+			<xs:enumeration value="604"/>
+			<xs:enumeration value="608"/>
+			<xs:enumeration value="612"/>
+			<xs:enumeration value="616"/>
+			<xs:enumeration value="620"/>
+			<xs:enumeration value="624"/>
+			<xs:enumeration value="626"/>
+			<xs:enumeration value="630"/>
+			<xs:enumeration value="634"/>
+			<xs:enumeration value="638"/>
+			<xs:enumeration value="642"/>
+			<xs:enumeration value="643"/>
+			<xs:enumeration value="646"/>
+			<xs:enumeration value="652"/>
+			<xs:enumeration value="654"/>
+			<xs:enumeration value="659"/>
+			<xs:enumeration value="660"/>
+			<xs:enumeration value="662"/>
+			<xs:enumeration value="663"/>
+			<xs:enumeration value="666"/>
+			<xs:enumeration value="670"/>
+			<xs:enumeration value="674"/>
+			<xs:enumeration value="678"/>
+			<xs:enumeration value="682"/>
+			<xs:enumeration value="686"/>
+			<xs:enumeration value="688"/>
+			<xs:enumeration value="690"/>
+			<xs:enumeration value="694"/>
+			<xs:enumeration value="702"/>
+			<xs:enumeration value="703"/>
+			<xs:enumeration value="704"/>
+			<xs:enumeration value="705"/>
+			<xs:enumeration value="706"/>
+			<xs:enumeration value="710"/>
+			<xs:enumeration value="716"/>
+			<xs:enumeration value="724"/>
+			<xs:enumeration value="728"/>
+			<xs:enumeration value="729"/>
+			<xs:enumeration value="732"/>
+			<xs:enumeration value="736"/>
+			<xs:enumeration value="740"/>
+			<xs:enumeration value="744"/>
+			<xs:enumeration value="748"/>
+			<xs:enumeration value="752"/>
+			<xs:enumeration value="756"/>
+			<xs:enumeration value="760"/>
+			<xs:enumeration value="762"/>
+			<xs:enumeration value="764"/>
+			<xs:enumeration value="768"/>
+			<xs:enumeration value="772"/>
+			<xs:enumeration value="776"/>
+			<xs:enumeration value="780"/>
+			<xs:enumeration value="784"/>
+			<xs:enumeration value="788"/>
+			<xs:enumeration value="792"/>
+			<xs:enumeration value="795"/>
+			<xs:enumeration value="796"/>
+			<xs:enumeration value="798"/>
+			<xs:enumeration value="800"/>
+			<xs:enumeration value="804"/>
+			<xs:enumeration value="807"/>
+			<xs:enumeration value="810"/>
+			<xs:enumeration value="818"/>
+			<xs:enumeration value="826"/>
+			<xs:enumeration value="831"/>
+			<xs:enumeration value="832"/>
+			<xs:enumeration value="833"/>
+			<xs:enumeration value="834"/>
+			<xs:enumeration value="840"/>
+			<xs:enumeration value="850"/>
+			<xs:enumeration value="854"/>
+			<xs:enumeration value="858"/>
+			<xs:enumeration value="860"/>
+			<xs:enumeration value="862"/>
+			<xs:enumeration value="876"/>
+			<xs:enumeration value="882"/>
+			<xs:enumeration value="887"/>
+			<xs:enumeration value="891"/>
+			<xs:enumeration value="894"/>
+			<xs:enumeration value="999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	<xs:simpleType name="LehdenNimiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Vapaamuotoinen tekstikenttä, joka saa olla korkeintaan 500 merkkiä pitkä.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	<xs:simpleType name="ISSNTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Jos kentässä on arvo, sen ISSN-koodin oikeellisuus tarkistetaan tarkistemerkin avulla. Numerosarjaan kuuluvan erottimen (väliviivan) muodolla ei ole merkitystä
+			oikeellisuuden kannalta. Tarkistusmerkin laskentamenetelmä on muuten sama kuin ISBN-numeroilla (ks. L-YO3-1.26), mutta koska numerosarja on lyhyempi, 
+			alusta jätetään kaksi kerrointa pois, eli kertoimet ovat vasemmalta oikealle 3..9. ISSN koodeja saa samassa kentässä olla täsmälleen yksi.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+			<!-- <xs:pattern value="([0-9]){4}-([0-9]){3}[0-9xX]"/> -->
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	<xs:simpleType name="VolyymiTekstiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Vapaa tekstikenttä
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="200"/>
+			<!-- <xs:pattern value="([0-9])*-([0-9])*|([0-9])*"/> -->
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	<xs:simpleType name="LehdenNumeroTekstiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Vapaa tekstikenttä
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="200"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	
+	
+	<xs:simpleType name="KonferenssinNimiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Vapaamuotoinen tekstikenttä, joka saa olla korkeintaan 500 merkkiä pitkä. Pakollinen julkaisutyypeille  A4 ja B3
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			 <xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	
+	
+	
+	<xs:simpleType name="KustantajanNimiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Kustantaja on vapaamuotoinen tekstikenttä, joka saa olla korkeintaan 500 merkkiä pitkä.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>		
+	
+	
+	<xs:simpleType name="KustannuspaikkaTekstiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Vapaa tekstikenttä
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="200"/>
+		</xs:restriction>
+	</xs:simpleType>		
+	
+	
+	
+    <xs:simpleType name="EmojulkaisunNimiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Vapaa tekstikenttä
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>			
+	
+
+    <xs:simpleType name="EmojulkaisunToimittajatTekstiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Vapaa tekstikenttä
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	
+	
+	
+    <xs:simpleType name="JulkaisutyyppiKoodiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Julkaisutyyppi-kenttä ei saa olla tyhjä. Sallittuja arvoja ovat annetun koodiston aliluokkien eli täsmälleen kaksi merkkiä pitkät tunnisteet (esim. A2, D6).
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:enumeration value="A1"/>
+			<xs:enumeration value="A2"/>
+			<xs:enumeration value="A3"/>
+			<xs:enumeration value="A4"/>
+			<xs:enumeration value="B1"/>
+			<xs:enumeration value="B2"/>
+			<xs:enumeration value="B3"/>
+			<xs:enumeration value="C1"/>
+			<xs:enumeration value="C2"/>
+			<xs:enumeration value="D1"/>
+			<xs:enumeration value="D2"/>
+			<xs:enumeration value="D3"/>
+			<xs:enumeration value="D4"/>
+			<xs:enumeration value="D5"/>
+			<xs:enumeration value="D6"/>
+			<xs:enumeration value="E1"/>
+			<xs:enumeration value="E2"/>
+			<xs:enumeration value="E3"/>
+			<xs:enumeration value="G4"/>
+			<xs:enumeration value="G5"/>	   
+		</xs:restriction>
+	</xs:simpleType>		
+	
+	
+
+	
+
+    <xs:simpleType name="JulkaisunKieliKoodiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Julkaisun kieli saa olla tyhjä. Jos kentässä on arvo, tulee sen olla vuoden 2003 TK:n kielikoodiston mukainen arvo. 99=tuntematon ei ole hyväksytty arvo.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+			<xs:enumeration value="20"/>
+			<xs:enumeration value="98"/>
+			<xs:enumeration value="aa"/>
+			<xs:enumeration value="ab"/>
+			<xs:enumeration value="ae"/>
+			<xs:enumeration value="af"/>
+			<xs:enumeration value="ak"/>
+			<xs:enumeration value="am"/>
+			<xs:enumeration value="an"/>
+			<xs:enumeration value="ar"/>
+			<xs:enumeration value="as"/>
+			<xs:enumeration value="av"/>
+			<xs:enumeration value="ay"/>
+			<xs:enumeration value="az"/>
+			<xs:enumeration value="ba"/>
+			<xs:enumeration value="be"/>
+			<xs:enumeration value="bg"/>
+			<xs:enumeration value="bh"/>
+			<xs:enumeration value="bi"/>
+			<xs:enumeration value="bm"/>
+			<xs:enumeration value="bn"/>
+			<xs:enumeration value="bo"/>
+			<xs:enumeration value="br"/>
+			<xs:enumeration value="bs"/>
+			<xs:enumeration value="ca"/>
+			<xs:enumeration value="ce"/>
+			<xs:enumeration value="ch"/>
+			<xs:enumeration value="co"/>
+			<xs:enumeration value="cr"/>
+			<xs:enumeration value="cs"/>
+			<xs:enumeration value="cu"/>
+			<xs:enumeration value="cv"/>
+			<xs:enumeration value="cy"/>
+			<xs:enumeration value="da"/>
+			<xs:enumeration value="de"/>
+			<xs:enumeration value="dv"/>
+			<xs:enumeration value="dz"/>
+			<xs:enumeration value="ee"/>
+			<xs:enumeration value="el"/>
+			<xs:enumeration value="en"/>
+			<xs:enumeration value="eo"/>
+			<xs:enumeration value="es"/>
+			<xs:enumeration value="et"/>
+			<xs:enumeration value="eu"/>
+			<xs:enumeration value="fa"/>
+			<xs:enumeration value="ff"/>
+			<xs:enumeration value="fi"/>
+			<xs:enumeration value="fj"/>
+			<xs:enumeration value="fo"/>
+			<xs:enumeration value="fr"/>
+			<xs:enumeration value="fy"/>
+			<xs:enumeration value="ga"/>
+			<xs:enumeration value="gd"/>
+			<xs:enumeration value="gl"/>
+			<xs:enumeration value="gn"/>
+			<xs:enumeration value="gu"/>
+			<xs:enumeration value="gv"/>
+			<xs:enumeration value="ha"/>
+			<xs:enumeration value="he"/>
+			<xs:enumeration value="hi"/>
+			<xs:enumeration value="ho"/>
+			<xs:enumeration value="hr"/>
+			<xs:enumeration value="ht"/>
+			<xs:enumeration value="hu"/>
+			<xs:enumeration value="hy"/>
+			<xs:enumeration value="hz"/>
+			<xs:enumeration value="ia"/>
+			<xs:enumeration value="id"/>
+			<xs:enumeration value="ie"/>
+			<xs:enumeration value="ig"/>
+			<xs:enumeration value="ii"/>
+			<xs:enumeration value="ik"/>
+			<xs:enumeration value="io"/>
+			<xs:enumeration value="is"/>
+			<xs:enumeration value="it"/>
+			<xs:enumeration value="iu"/>
+			<xs:enumeration value="ja"/>
+			<xs:enumeration value="jv"/>
+			<xs:enumeration value="ka"/>
+			<xs:enumeration value="kg"/>
+			<xs:enumeration value="ki"/>
+			<xs:enumeration value="kj"/>
+			<xs:enumeration value="kk"/>
+			<xs:enumeration value="kl"/>
+			<xs:enumeration value="km"/>
+			<xs:enumeration value="kn"/>
+			<xs:enumeration value="ko"/>
+			<xs:enumeration value="kr"/>
+			<xs:enumeration value="ks"/>
+			<xs:enumeration value="ku"/>
+			<xs:enumeration value="kv"/>
+			<xs:enumeration value="kw"/>
+			<xs:enumeration value="ky"/>
+			<xs:enumeration value="la"/>
+			<xs:enumeration value="lb"/>
+			<xs:enumeration value="lg"/>
+			<xs:enumeration value="li"/>
+			<xs:enumeration value="ln"/>
+			<xs:enumeration value="lo"/>
+			<xs:enumeration value="lt"/>
+			<xs:enumeration value="lu"/>
+			<xs:enumeration value="lv"/>
+			<xs:enumeration value="mg"/>
+			<xs:enumeration value="mh"/>
+			<xs:enumeration value="mi"/>
+			<xs:enumeration value="mk"/>
+			<xs:enumeration value="ml"/>
+			<xs:enumeration value="mn"/>
+			<xs:enumeration value="mo"/>
+			<xs:enumeration value="mr"/>
+			<xs:enumeration value="ms"/>
+			<xs:enumeration value="mt"/>
+			<xs:enumeration value="my"/>
+			<xs:enumeration value="na"/>
+			<xs:enumeration value="nb"/>
+			<xs:enumeration value="nd"/>
+			<xs:enumeration value="ne"/>
+			<xs:enumeration value="ng"/>
+			<xs:enumeration value="nl"/>
+			<xs:enumeration value="nn"/>
+			<xs:enumeration value="no"/>
+			<xs:enumeration value="nr"/>
+			<xs:enumeration value="nv"/>
+			<xs:enumeration value="ny"/>
+			<xs:enumeration value="oc"/>
+			<xs:enumeration value="oj"/>
+			<xs:enumeration value="om"/>
+			<xs:enumeration value="or"/>
+			<xs:enumeration value="os"/>
+			<xs:enumeration value="pa"/>
+			<xs:enumeration value="pi"/>
+			<xs:enumeration value="pl"/>
+			<xs:enumeration value="ps"/>
+			<xs:enumeration value="pt"/>
+			<xs:enumeration value="qu"/>
+			<xs:enumeration value="rm"/>
+			<xs:enumeration value="rn"/>
+			<xs:enumeration value="ro"/>
+			<xs:enumeration value="ru"/>
+			<xs:enumeration value="rw"/>
+			<xs:enumeration value="sa"/>
+			<xs:enumeration value="sc"/>
+			<xs:enumeration value="sd"/>
+			<xs:enumeration value="se"/>
+			<xs:enumeration value="sg"/>
+			<xs:enumeration value="sh"/>
+			<xs:enumeration value="si"/>
+			<xs:enumeration value="sk"/>
+			<xs:enumeration value="sl"/>
+			<xs:enumeration value="sm"/>
+			<xs:enumeration value="sn"/>
+			<xs:enumeration value="so"/>
+			<xs:enumeration value="sq"/>
+			<xs:enumeration value="sr"/>
+			<xs:enumeration value="ss"/>
+			<xs:enumeration value="st"/>
+			<xs:enumeration value="su"/>
+			<xs:enumeration value="sv"/>
+			<xs:enumeration value="sw"/>
+			<xs:enumeration value="ta"/>
+			<xs:enumeration value="te"/>
+			<xs:enumeration value="tg"/>
+			<xs:enumeration value="th"/>
+			<xs:enumeration value="ti"/>
+			<xs:enumeration value="tk"/>
+			<xs:enumeration value="tl"/>
+			<xs:enumeration value="tn"/>
+			<xs:enumeration value="to"/>
+			<xs:enumeration value="tr"/>
+			<xs:enumeration value="ts"/>
+			<xs:enumeration value="tt"/>
+			<xs:enumeration value="tw"/>
+			<xs:enumeration value="ty"/>
+			<xs:enumeration value="ug"/>
+			<xs:enumeration value="uk"/>
+			<xs:enumeration value="ur"/>
+			<xs:enumeration value="uz"/>
+			<xs:enumeration value="wa"/>
+			<xs:enumeration value="ve"/>
+			<xs:enumeration value="vi"/>
+			<xs:enumeration value="vo"/>
+			<xs:enumeration value="wo"/>
+			<xs:enumeration value="xh"/>
+			<xs:enumeration value="yi"/>
+			<xs:enumeration value="yo"/>
+			<xs:enumeration value="za"/>
+			<xs:enumeration value="zh"/>
+			<xs:enumeration value="zu"/>
+		</xs:restriction>
+	</xs:simpleType>	
+		
+
+		
+	<xs:simpleType name="AvoinSaatavuusKoodiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Avoin saatavuus -kenttä saa olla tyhjä, ja sallitut arvot ovat koodiston mukaiset 0, 1, 2 tai 9.
+			
+			Koodistoarvot vuodesta 2016 eteenpäin:
+			0 = Ei vastausta
+			1 = Open access -julkaisukanavassa ilmestynyt julkaisu
+			2 = Hybridijulkaisukanavassa ilmestynyt avoin julkaisu
+
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1"/>
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="9"/>
+		</xs:restriction>
+	</xs:simpleType>
+		
+	
+
+
+    <xs:simpleType name="DOITyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			DOI tunniste on vapaamuotoinen tekstikenttä.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="200"/>
+		</xs:restriction>
+	</xs:simpleType>	
+		
+	
+	
+	<xs:simpleType name="PysyvaOsoiteTekstiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Vapaamuotoinen tekstikenttä. Kentän maksimipituus 400 merkkiä.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="400"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	
+	
+	
+	<xs:simpleType name="LahdetietokannanTunnusTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Lähdetietokannan koodi on vapaamuotoinen tekstikenttä. Maksimipituus 200 merkkiä. (Koodeja voi olla useita puolipisteellä erotettuna samassa kentässä.)
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="400"/>
+		</xs:restriction>
+	</xs:simpleType>		
+	
+	
+	
+	<xs:simpleType name="NimiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Muodossa: Sukunimi, Etunimi. Vähintään yksi tekijä ilmoitettava
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>		
+	
+
+	<xs:simpleType name="YksikkoKoodiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Organisaation yksikkökoodi
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="200"/>
+		</xs:restriction>
+	</xs:simpleType>		
+	
+	<xs:simpleType name="ORCIDTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Tunniste koostuu neljästä väliviivoin erotetusta neljän numeron sarjasta, esim. 0000-0001-5532-9274
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>		
+	
+	
+	<xs:simpleType name="KyllaEiTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Vapaa tekstikenttä
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1"/>
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+
+	<xs:simpleType name="TKAlaAttribuutti">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Kuusi mahdollista tieteenala luokitusta
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	
+	<xs:simpleType name="TieteenalaKooditTyyppi">
+		<xs:restriction base="xs:integer">
+			<xs:enumeration value="1"/> <!-- 	LUONNONTIETEET-->
+			<xs:enumeration value="111"/> <!-- 	Matematiikka-->
+			<xs:enumeration value="112"/> <!-- 	Tilastotiede-->
+			<xs:enumeration value="113"/> <!-- 	Tietojenkäsittely ja informaatiotieteet-->
+			<xs:enumeration value="114"/> <!-- 	Fysiikka-->
+			<xs:enumeration value="115"/> <!-- 	Avaruustieteet ja tähtitiede-->
+			<xs:enumeration value="116"/> <!-- 	Kemia-->
+			<xs:enumeration value="117"/> <!-- 	Maantiede ja ympäristötieteet-->
+			<xs:enumeration value="1171"/> <!-- 	Geotieteet-->
+			<xs:enumeration value="1172"/> <!-- 	Ympäristötiede-->
+			<xs:enumeration value="118"/> <!-- 	Biotieteet-->
+			<xs:enumeration value="1181"/> <!-- 	Ekologia, evoluutiobiologia-->
+			<xs:enumeration value="1182"/> <!-- 	Biokemia, solu- ja molekyylibiologia-->
+			<xs:enumeration value="1183"/> <!-- 	Kasvibiologia, mikrobiologia, virologia-->
+			<xs:enumeration value="1184"/> <!-- 	Genetiikka, kehitysbiologia, fysiologia-->
+			<xs:enumeration value="119"/> <!-- 	Muut luonnontieteet-->
+			<xs:enumeration value="2"/> <!-- 	TEKNIIKKA-->
+			<xs:enumeration value="211"/> <!-- 	Arkkitehtuuri-->
+			<xs:enumeration value="212"/> <!-- 	Rakennus- ja yhdyskuntatekniikka-->
+			<xs:enumeration value="213"/> <!-- 	Sähkö-, automaatio- ja tietoliikennetekniikka, elektroniikka-->
+			<xs:enumeration value="214"/> <!-- 	Kone- ja valmistustekniikka-->
+			<xs:enumeration value="215"/> <!-- 	Teknillinen kemia, kemian prosessitekniikka-->
+			<xs:enumeration value="216"/> <!-- 	Materiaalitekniikka-->
+			<xs:enumeration value="217"/> <!-- 	Lääketieteen tekniikka-->
+			<xs:enumeration value="218"/> <!-- 	Ympäristötekniikka-->
+			<xs:enumeration value="219"/> <!-- 	Ympäristön bioteknologia-->
+			<xs:enumeration value="220"/> <!-- 	Teollinen bioteknologia-->
+			<xs:enumeration value="221"/> <!-- 	Nanoteknologia-->
+			<xs:enumeration value="222"/> <!-- 	Muu tekniikka-->
+			<xs:enumeration value="3"/> <!-- 	LÄÄKE- JA TERVEYSTIETEET-->
+			<xs:enumeration value="311"/> <!-- 	Peruslääketieteet-->
+			<xs:enumeration value="3111"/> <!-- 	Biolääketieteet-->
+			<xs:enumeration value="3112"/> <!-- 	Neurotieteet-->
+			<xs:enumeration value="312"/> <!-- 	Kliiniset lääketieteet-->
+			<xs:enumeration value="3121"/> <!-- 	Sisätaudit-->
+			<xs:enumeration value="3122"/> <!-- 	Syöpätaudit-->
+			<xs:enumeration value="3123"/> <!-- 	Naisten- ja lastentaudit-->
+			<xs:enumeration value="3124"/> <!-- 	Neurologia ja psykiatria-->
+			<xs:enumeration value="3125"/> <!-- 	Korva-, nenä- ja kurkkutaudit, silmätaudit-->
+			<xs:enumeration value="3126"/> <!-- 	Kirurgia, anestesiologia, tehohoito, radiologia-->
+			<xs:enumeration value="313"/> <!-- 	Hammaslääketieteet-->
+			<xs:enumeration value="314"/> <!-- 	Terveystieteet-->
+			<xs:enumeration value="3141"/> <!-- 	Terveystiede-->
+			<xs:enumeration value="3142"/> <!-- 	Kansanterveystiede, ympäristö ja työterveys-->
+			<xs:enumeration value="315"/> <!-- 	Liikuntatiede-->
+			<xs:enumeration value="316"/> <!-- 	Hoitotiede-->
+			<xs:enumeration value="317"/> <!-- 	Farmasia-->
+			<xs:enumeration value="318"/> <!-- 	Lääketieteen bioteknologia-->
+			<xs:enumeration value="319"/> <!-- 	Oikeuslääketiede ja muut lääketieteet-->
+			<xs:enumeration value="4"/> <!-- 	MAATALOUS- JA METSÄTIETEET-->
+			<xs:enumeration value="411"/> <!-- 	Maatalous ja metsätieteet-->
+			<xs:enumeration value="4111"/> <!-- 	Maataloustiede-->
+			<xs:enumeration value="4112"/> <!-- 	Metsätiede-->
+			<xs:enumeration value="412"/> <!-- 	Kotieläintiede, maitotaloustiede-->
+			<xs:enumeration value="413"/> <!-- 	Eläinlääketiede-->
+			<xs:enumeration value="414"/> <!-- 	Maatalouden bioteknologia-->
+			<xs:enumeration value="415"/> <!-- 	Muut maataloustieteet-->
+			<xs:enumeration value="5"/> <!-- 	YHTEISKUNTATIETEET-->
+			<xs:enumeration value="511"/> <!-- 	Kansantaloustiede-->
+			<xs:enumeration value="512"/> <!-- 	Liiketaloustiede-->
+			<xs:enumeration value="513"/> <!-- 	Oikeustiede-->
+			<xs:enumeration value="514"/> <!-- 	Sosiaalitieteet-->
+			<xs:enumeration value="5141"/> <!-- 	Sosiologia-->
+			<xs:enumeration value="5142"/> <!-- 	Sosiaali- ja yhteiskuntapolitiikka-->
+			<xs:enumeration value="515"/> <!-- 	Psykologia-->
+			<xs:enumeration value="516"/> <!-- 	Kasvatustieteet-->
+			<xs:enumeration value="517"/> <!-- 	Valtio-oppi, hallintotiede-->
+			<xs:enumeration value="518"/> <!-- 	Media- ja viestintätieteet-->
+			<xs:enumeration value="519"/> <!-- 	Yhteiskuntamaantiede, talousmaantiede-->
+			<xs:enumeration value="520"/> <!-- 	Muut yhteiskuntatieteet-->
+			<xs:enumeration value="6"/> <!-- 	HUMANISTISET TIETEET-->
+			<xs:enumeration value="611"/> <!-- 	Filosofia-->
+			<xs:enumeration value="612"/> <!-- 	Kielitieteet, kirjallisuus-->
+			<xs:enumeration value="6121"/> <!-- 	Kielitieteet-->
+			<xs:enumeration value="6122"/> <!-- 	Kirjallisuuden tutkimus-->
+			<xs:enumeration value="613"/> <!-- 	Taiteiden tutkimus-->
+			<xs:enumeration value="6131"/> <!-- 	Teatteri, tanssi, musiikki, muut esittävät taiteet-->
+			<xs:enumeration value="6132"/> <!-- 	Kuvataide ja muotoilu-->
+			<xs:enumeration value="614"/> <!-- 	Teologia-->
+			<xs:enumeration value="615"/> <!--	Historia ja arkeologia-->
+			<xs:enumeration value="616"/> <!-- 	Muut humanistiset tieteet-->
+			<xs:enumeration value="9"/> <!-- 	MUUT-->
+			<xs:enumeration value="999"/> <!-- 	Muut-->
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="KoulutusalaKooditTyyppi">
+		<xs:restriction base="xs:integer">
+			<xs:enumeration value="1"/>   <!--  Humanistinen ja kasvatusala -->
+			<xs:enumeration value="2"/>   <!--  Kulttuuriala -->
+			<xs:enumeration value="3"/>    <!-- Yhteiskuntatieteiden, liiketalouden ja -->
+			<xs:enumeration value="4"/>   <!--  Luonnontieteiden ala -->
+			<xs:enumeration value="5"/>    <!-- Tekniikan ja liikenteen ala --> 
+			<xs:enumeration value="6"/>    <!-- Luonnonvara- ja ympäristöala -->
+			<xs:enumeration value="7"/>   <!--  Sosiaali-, terveys- ja liikunta-ala --> 
+			<xs:enumeration value="8"/>   <!--  Matkailu-, ravitsemis- ja talousala -->			
+			<xs:enumeration value="75"/>  <!-- Teologinen -->
+			<xs:enumeration value="76"/>  <!-- Humanistinen -->
+			<xs:enumeration value="77"/>  <!-- Taideteollinen -->
+			<xs:enumeration value="78"/>  <!-- Musiikkiala -->
+			<xs:enumeration value="79"/>  <!-- Teatteri- ja tanssiala --> 
+			<xs:enumeration value="80"/>  <!-- Kasvatustieteellinen -->
+			<xs:enumeration value="81"/>  <!-- Liikuntatieteellinen -->
+			<xs:enumeration value="82"/>  <!-- Yhteiskuntatieteellinen -->
+			<xs:enumeration value="83"/>  <!-- Psykologia -->
+			<xs:enumeration value="84"/>  <!-- Terveystieteet -->
+			<xs:enumeration value="85"/>  <!-- Oikeustieteellinen --> 
+			<xs:enumeration value="86"/>  <!-- Kauppatieteellinen -->
+			<xs:enumeration value="87"/>  <!-- Luonnontieteellinen -->
+			<xs:enumeration value="88"/>  <!-- Maatalous metsätieteellinen -->
+			<xs:enumeration value="89"/>  <!-- Teknillistieteellinen  -->
+			<xs:enumeration value="90"/>  <!-- Lääketieteellinen -->
+			<xs:enumeration value="91"/>  <!-- Hammaslääketieteellinen -->
+			<xs:enumeration value="92"/>  <!-- Eläinlääketieteellinen -->
+			<xs:enumeration value="93"/>  <!-- Farmasia --> 
+			<xs:enumeration value="94"/>  <!-- Kuvataideala --> 	
+		</xs:restriction>
+	</xs:simpleType>
+	
+	
+	<xs:simpleType name="HankenumeroTyyppi">
+		<xs:annotation>
+			<xs:documentation xml:lang="fi">
+			Vapaa tekstikenttä
+		</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	
+</xs:schema>
