@@ -374,6 +374,12 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
         {            
             int maximi = 0;
 
+            if (getVuosi() == 2018)
+            {
+                maximi = 62;
+            }
+
+
             if (getVuosi() == 2017)
             {
                 maximi = 62;
@@ -437,7 +443,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
             String[] CSVSarakkeet_utf_vaarin = null;
 
 
-            if (getVuosi() == 2016 || getVuosi() == 2017)
+            if (getVuosi() == 2016 || getVuosi() == 2017 || getVuosi() == 2018)
             {   
                 // Jos amk
                 if ( OnkoAMK(getOrganisaatioKoodi()) ) {
@@ -1131,7 +1137,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                 elements = elements2015;
             }
 
-            if (getVuosi() == 2016 || getVuosi() == 2017)
+            if (getVuosi() == 2016 || getVuosi() == 2017 || getVuosi() == 2018)
             {
                 elements = elements2016;
             }
@@ -1818,6 +1824,8 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
 
             string[] elements2017 = { "OrganisaatioTunnus", "IlmoitusVuosi", "JulkaisunTunnus", "JulkaisunTilaKoodi", "JulkaisunOrgTunnus", "YksikkoKoodi", "JulkaisuVuosi", "JulkaisunNimi", "TekijatiedotTeksti", "TekijoidenLkm", "SivunumeroTeksti", "Artikkelinumero", "AvainsanaTeksti", "ISBN", "JufoTunnus", "JufoLuokkaKoodi", "JulkaisumaaKoodi", "LehdenNimi", "ISSN", "VolyymiTeksti", "LehdenNumeroTeksti", "KonferenssinNimi", "KustantajanNimi", "KustannuspaikkaTeksti", "EmojulkaisunNimi", "EmojulkaisunToimittajatTeksti", "JulkaisutyyppiKoodi", "TieteenalaKoodi", "KoulutusalaKoodi", "YhteisjulkaisuKVKytkin", "JulkaisunKansainvalisyysKytkin", "JulkaisunKieliKoodi", "AvoinSaatavuusKoodi", "YhteisjulkaisuYritysKytkin", "RinnakkaistallennettuKytkin", "RinnakkaistallennusOsoiteTeksti", "DOI", "PysyvaOsoiteTeksti", "LahdetietokannanTunnus", "Sukunimi", "Etunimet", "YksikkoKoodi2", "ORCID" };
 
+            string[] elements2018 = { "OrganisaatioTunnus", "IlmoitusVuosi", "JulkaisunTunnus", "JulkaisunTilaKoodi", "JulkaisunOrgTunnus", "YksikkoKoodi", "JulkaisuVuosi", "JulkaisunNimi", "TekijatiedotTeksti", "TekijoidenLkm", "SivunumeroTeksti", "Artikkelinumero", "AvainsanaTeksti", "ISBN", "JufoTunnus", "JufoLuokkaKoodi", "JulkaisumaaKoodi", "LehdenNimi", "ISSN", "VolyymiTeksti", "LehdenNumeroTeksti", "KonferenssinNimi", "KustantajanNimi", "KustannuspaikkaTeksti", "EmojulkaisunNimi", "EmojulkaisunToimittajatTeksti", "JulkaisutyyppiKoodi", "TieteenalaKoodi", "KoulutusalaKoodi", "YhteisjulkaisuKVKytkin", "JulkaisunKansainvalisyysKytkin", "JulkaisunKieliKoodi", "AvoinSaatavuusKoodi", "YhteisjulkaisuYritysKytkin", "RinnakkaistallennettuKytkin", "RinnakkaistallennusOsoiteTeksti", "DOI", "PysyvaOsoiteTeksti", "LahdetietokannanTunnus", "Sukunimi", "Etunimet", "YksikkoKoodi2", "ORCID" };
+
             if (getVuosi() == 2015)
             {
                 elements = elements2015;
@@ -1831,8 +1839,12 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
             if (getVuosi() == 2017 )
             {
                 elements = elements2017;
-            }          
+            }
 
+            if (getVuosi() == 2018)
+            {
+                elements = elements2018;
+            } 
 
             return elements[numero];
         }
@@ -2116,7 +2128,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                             // 2017 raportointivuosi 2018 
                             // 2016 raportointivuosi 2017
                             // - 6 koska koulutus ala on poistettu
-                            if (vuosiV == 2016 || vuosiV == 2017)
+                            if (vuosiV == 2016 || vuosiV == 2017 || vuosiV == 2018)
                             {
                                 cellValues2[0] = cellValues1[0];    // korkeakoulu Organisaatio
                                 cellValues2[1] = cellValues1[1];    // Ilmoitusvuosi
@@ -2277,7 +2289,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
 
             int maximi = 0;
 
-            if (getVuosi() == 2016 || getVuosi() == 2017)
+            if (getVuosi() == 2016 || getVuosi() == 2017 || getVuosi() == 2018)
             {
                 maximi = 62;    // Voi että!
             }
@@ -2500,7 +2512,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                                                 num_ok = true;
                                             }
 
-                                            if ((getVuosi() == 2016 || getVuosi() == 2017) && num == 62)
+                                            if ((getVuosi() == 2016 || getVuosi() == 2017 || getVuosi() == 2018) && num == 62)
                                             {
                                                 num_ok = true;
                                             }
@@ -3535,11 +3547,11 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
             string[] koodit = arvo.Split(';');  // Tulee lista ; eroteltuja koodiarvoja
 
 
-            string[] LehdenNimiPakollisuusJosJulkaisuTyyppiKoodi = { "D1" };
+            string[] LehdenNimiPakollisuusJosJulkaisuTyyppiKoodi = { "D1", "E1" };
 
             foreach (string koodi in koodit)
             {
-                if (Array.Exists(LehdenNimiPakollisuusJosJulkaisuTyyppiKoodi, element => element == koodi) && vuosi == 2017)
+                if (Array.Exists(LehdenNimiPakollisuusJosJulkaisuTyyppiKoodi, element => element == koodi) && (vuosi == 2017 || vuosi == 2018))
                 {
                     return true;  // Eli Lehden nimi on pakollinen				
                 }
@@ -3616,7 +3628,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
             // KustantajanNimi pakollinen julkaisutyypeille A3, B2, C1
             // C2 Poistettu 9.3.2016 
             string[] KustantajaJulkaisuTyyppiKoodi2016 = {"A3", "B2", "C1"};
-            string[] KustantajaJulkaisuTyyppiKoodi2017 = { "A3", "B2", "C1", "C2", "D2", "D4", "D6", "E2", "E3" }; 
+            string[] KustantajaJulkaisuTyyppiKoodi2017 = { "A3", "B2", "C1", "C2", "D2", "D4", "D5", "D6", "E2", "E3" }; 
 		
             foreach (string koodi in koodit)
             {
@@ -3625,7 +3637,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     return true;  // Eli Kustantaja nimi on pakollinen				
                 }
 
-                if (Array.Exists(KustantajaJulkaisuTyyppiKoodi2017, element => element == koodi) && vuosi == 2017)
+                if (Array.Exists(KustantajaJulkaisuTyyppiKoodi2017, element => element == koodi) && (vuosi == 2017 || vuosi == 2018))
                 {
                     return true;  // Eli Kustantaja nimi on pakollinen				
                 }
@@ -3644,7 +3656,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
 
             // B3, A4
             string[] Onpakollinen2016 = { "B3", "A4" };
-            string[] Onpakollinen2017 = { "B3", "A4", "D3" };
+            string[] Onpakollinen2017 = { "B3", "A4", "D2", "D3" };
 
             foreach (string koodi in koodit)
             {
@@ -3653,7 +3665,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     return true;  // eli on pakollinen									
                 }
 
-                if (Array.Exists(Onpakollinen2017, element => element == koodi) && vuosi == 2017)
+                if (Array.Exists(Onpakollinen2017, element => element == koodi) && (vuosi == 2017 || vuosi == 2018))
                 {
                     return true;  // eli on pakollinen									
                 }
@@ -4944,7 +4956,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     }
                     
 
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 )
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018)
                     {
 
                         // Tekijän sukunimi on pakollinen
@@ -5156,7 +5168,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     }
 
                     // JulkaisunKieliKoodi 2016  indeksi 34 => 32
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 )
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018)
                     {
                         // Kieli koodin oikeellisuus
                         if ((rivi.Cells[31] != null) && (rivi.Cells[31].Value.ToString().Length > 0))
@@ -5558,7 +5570,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     }
 
                     // JulkaisunKansainvalisyysKytkin Indeksi 33 => 30 2016
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 )
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018)
                     {
                         // JulkaisunKansainvalisyysKytkin oltava numeerinen 0 tai 1
                         if ((rivi.Cells[30] != null) || (rivi.Cells[30].Value.ToString().Length > 0))
@@ -5721,7 +5733,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     }
 
                     // AvoinSaatavuusKoodi Indeksi 35 => 32 2016
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 )
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018)
                     {
                         // AvoinSaatavuusKoodi oltava numeerinen 0 tai 1
                         if ((rivi.Cells[32] != null) || (rivi.Cells[32].Value.ToString().Length > 0))
@@ -5929,7 +5941,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     }
 
 
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 )
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018)
                     {
 
                         if ((rivi.Cells[36].Value.ToString().Trim().Length > 0))
@@ -6022,7 +6034,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     }
                     
 
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 )
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018)
                     {
                         if ((rivi.Cells[37].Value.ToString().Trim().Length > 0))
                         {
@@ -6103,7 +6115,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     }
                     
 
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 )
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018)
                     {
                         // Tarkista ORCID
                         if ((rivi.Cells[42].Value.ToString().Trim().Length > 0))
@@ -6157,7 +6169,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
 
 
                     // YhteisjulkaisuYritysKytkin
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 )
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018)
                     {
                         // YhteisjulkaisuYritysKytkin oltava numeerinen 0 tai 1
                         if ((rivi.Cells[33] != null) || (rivi.Cells[33].Value.ToString().Length > 0))
@@ -6228,7 +6240,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     }
 
                     // RinnakkaistallennettuKytkin
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 )
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018)
                     {
                         // RinnakkaistallennettuKytkin on oltava numeerinen 0 tai 1
                         if ((rivi.Cells[34] != null) || (rivi.Cells[34].Value.ToString().Length > 0))
