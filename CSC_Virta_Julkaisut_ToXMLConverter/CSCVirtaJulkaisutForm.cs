@@ -3656,7 +3656,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
 
             // B3, A4
             string[] Onpakollinen2016 = { "B3", "A4" };
-            string[] Onpakollinen2017 = { "B3", "A4", "D2", "D3" };
+            string[] Onpakollinen2017 = { "B3", "A4", "D3" };
 
             foreach (string koodi in koodit)
             {
