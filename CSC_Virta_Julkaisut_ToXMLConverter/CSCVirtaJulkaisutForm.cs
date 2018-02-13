@@ -3547,7 +3547,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
             string[] koodit = arvo.Split(';');  // Tulee lista ; eroteltuja koodiarvoja
 
 
-            string[] LehdenNimiPakollisuusJosJulkaisuTyyppiKoodi = { "D1", "E1" };
+            string[] LehdenNimiPakollisuusJosJulkaisuTyyppiKoodi = { "D1"};
 
             foreach (string koodi in koodit)
             {
