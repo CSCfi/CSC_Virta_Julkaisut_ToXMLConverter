@@ -178,7 +178,7 @@
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(378, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(379, 22);
             this.openToolStripMenuItem.Text = "&Lue lähdetiedosto...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.LueLahdeTiedostoButton_Click);
             // 
@@ -186,14 +186,14 @@
             // 
             this.tyhjennäVanhatTiedotJaLueUusiLähdetiedostoToolStripMenuItem.Name = "tyhjennäVanhatTiedotJaLueUusiLähdetiedostoToolStripMenuItem";
             this.tyhjennäVanhatTiedotJaLueUusiLähdetiedostoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.tyhjennäVanhatTiedotJaLueUusiLähdetiedostoToolStripMenuItem.Size = new System.Drawing.Size(378, 22);
+            this.tyhjennäVanhatTiedotJaLueUusiLähdetiedostoToolStripMenuItem.Size = new System.Drawing.Size(379, 22);
             this.tyhjennäVanhatTiedotJaLueUusiLähdetiedostoToolStripMenuItem.Text = "Tyhje&nnä vanhat tiedot ja lue uusi lähdetiedosto...";
             this.tyhjennäVanhatTiedotJaLueUusiLähdetiedostoToolStripMenuItem.Click += new System.EventHandler(this.tyhjennäVanhatTiedotJaLueUusiLähdetiedostoToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(375, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(376, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -201,20 +201,20 @@
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(378, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(379, 22);
             this.saveToolStripMenuItem.Text = "Tallenna uu&si XML tiedosto";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.TallennaXMLButton_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(375, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(376, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(378, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(379, 22);
             this.exitToolStripMenuItem.Text = "Poistu";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -228,7 +228,7 @@
             this.avaaCsvtarkistustiedostoToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.toolsToolStripMenuItem.Text = "Työkal&ut";
             // 
             // customizeToolStripMenuItem
@@ -465,7 +465,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "CSC_VIRTA_JulkaisutForm";
-            this.Text = "CSC VIRTA Julkaisutietojen CSV-XML-työkalu (versio 1.2.2 12.03.2017)";
+            this.Text = "CSC VIRTA Julkaisutietojen CSV-XML-työkalu (versio 1.3.3 20.01.2020)";
             ((System.ComponentModel.ISupportInitialize)(this.LahdeDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.XMLdataGridView)).EndInit();
             this.menuStrip1.ResumeLayout(false);
