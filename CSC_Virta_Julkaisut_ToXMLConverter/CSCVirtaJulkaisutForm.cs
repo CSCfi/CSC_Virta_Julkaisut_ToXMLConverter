@@ -21,7 +21,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 /* *******************************************************************
  * 
  *  
- * CSC - Virta-Julkaisutietojen CSV-XML muuntotyökalu (C) 2016, 2017. 2018, 2019, 2020
+ * CSC - Virta-Julkaisutietojen CSV-XML muuntotyökalu (C) 2016, 2017. 2018, 2019, 2020, 2021
  * 
  * 
  * Työkalu voi olla avuksi kun halutaan muuntaa Virta-Julkaisutietovarantoa 
@@ -354,31 +354,37 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
         {            
             int maximi = 0;
 
+            // edit 2021-02-23 maximi muutettu 62 -> 64, koska lisatty uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
+            if (getVuosi() == 2021)
+            {
+                maximi = 64;
+            }
+
             if (getVuosi() == 2020)
             {
-                maximi = 62;
+                maximi = 64;
             }
 
             if (getVuosi() == 2019)
             {
-                maximi = 62;
+                maximi = 64;
             }
 
             if (getVuosi() == 2018)
             {
-                maximi = 62;
+                maximi = 64;
             }
 
 
             if (getVuosi() == 2017)
             {
-                maximi = 62;
+                maximi = 64;
             }
 
 
             if (getVuosi() == 2016)
             {
-                maximi = 62;
+                maximi = 64;
             }
 
             if (getVuosi() == 2015)
@@ -410,19 +416,22 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
 			
 			// Tiedostonmukaiset sarakenimet vuosille 2015 ja 2016, eikä sitä vanhemmille tiedoille tässä vaiheessa
             String[] CSVSarakkeet2015_amk = { "Ammattikorkeakoulu", "Vuosi", "Julkaisutyyppi", "I Tieteenala", "II Tieteenala", "III Tieteenala", "IV Tieteenala", "V Tieteenala", "VI Tieteenala", "I Koulutusala", "II Koulutusala", "III Koulutusala", "IV Koulutusala", "V Koulutusala", "VI Koulutusala", "Organisaation tekijät", "I Organisaation alayksikkö", "II Organisaation alayksikkö", "III Organisaation alayksikkö", "IV Organisaation alayksikkö", "V Organisaation alayksikkö", "VI Organisaation alayksikkö", "VII Organisaation alayksikkö", "VIII Organisaation alayksikkö", "IX Organisaation alayksikkö", "X Organisaation alayksikkö", "XI Organisaation alayksikkö", "XII Organisaation alayksikkö", "XIII Organisaation alayksikkö", "XIV Organisaation alayksikkö", "XV Organisaation alayksikkö", "XVI Organisaation alayksikkö", "XVII Organisaation alayksikkö", "XVIII Organisaation alayksikkö", "XIX Organisaation alayksikkö", "XX Organisaation alayksikkö", "Julkaisun tekijät", "Julkaisun tekijöiden lukumäärä", "Kansainvälinen yhteisjulkaisu", "Yliopistollinen sairaanhoitopiiri, yhteisjulkaisu", "Valtion sektoritutkimuslaitos, yhteisjulkaisu", "Muu kotimainen tutkimusorganisaatio, yhteisjulkaisu", "Julkaisun nimi", "Julkaisuvuosi", "Volyymi", "Numero", "Sivut", "Artikkelinumero", "Julkaisun kieli", "Lehden/sarjan nimi", "ISSN", "ISBN", "Emojulkaisun nimi", "Emojulkaisun toimittajat", "Kustantaja", "Julkaisun kustannuspaikka", "Julkaisumaa", "Julkaisun kansainvälisyys", "DOI-tunniste", "Pysyvä verkko-osoite", "Avoin saatavuus", "Lähdetietokannan koodi",  "Julkaisun julkaisukanava (JUFO-ID)", "Julkaisun id", "Konferenssin vakiintunut nimi", "Avainsanat" };
-            String[] CSVSarakkeet2016_amk = { "Ammattikorkeakoulu", "Vuosi", "Julkaisutyyppi", "I Tieteenala", "II Tieteenala", "III Tieteenala", "IV Tieteenala", "V Tieteenala", "VI Tieteenala", "Organisaation tekijät", "I Organisaation alayksikkö", "II Organisaation alayksikkö", "III Organisaation alayksikkö", "IV Organisaation alayksikkö", "V Organisaation alayksikkö", "VI Organisaation alayksikkö", "VII Organisaation alayksikkö", "VIII Organisaation alayksikkö", "IX Organisaation alayksikkö", "X Organisaation alayksikkö", "XI Organisaation alayksikkö", "XII Organisaation alayksikkö", "XIII Organisaation alayksikkö", "XIV Organisaation alayksikkö", "XV Organisaation alayksikkö", "XVI Organisaation alayksikkö", "XVII Organisaation alayksikkö", "XVIII Organisaation alayksikkö", "XIX Organisaation alayksikkö", "XX Organisaation alayksikkö", "Julkaisun tekijät", "Julkaisun tekijöiden lukumäärä", "Kansainvälinen yhteisjulkaisu", "Yhteisjulkaisu yrityksen kanssa", "Julkaisun nimi", "Julkaisuvuosi", "Volyymi", "Numero", "Sivut", "Artikkelinumero", "Julkaisun kieli", "Lehden/sarjan nimi", "ISSN", "ISBN", "Emojulkaisun nimi", "Emojulkaisun toimittajat", "Kustantaja", "Julkaisun kustannuspaikka", "Julkaisumaa", "Julkaisun kansainvälisyys", "DOI-tunniste", "Pysyvä verkko-osoite", "Avoin saatavuus", "Lähdetietokannan koodi", "Julkaisun julkaisukanava (JUFO-ID)", "Julkaisun organisaatiokohtainen id", "Konferenssin vakiintunut nimi", "Avainsanat", "Julkaisu rinnakkaistallennettu", "Rinnakkaistallennetun version verkko-osoite", "ORCID", "Julkaisun tila" };
+            // edit 2021-02-23 uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
+            String[] CSVSarakkeet2016_amk = { "Ammattikorkeakoulu", "Vuosi", "Julkaisutyyppi", "I Tieteenala", "II Tieteenala", "III Tieteenala", "IV Tieteenala", "V Tieteenala", "VI Tieteenala", "Organisaation tekijät", "I Organisaation alayksikkö", "II Organisaation alayksikkö", "III Organisaation alayksikkö", "IV Organisaation alayksikkö", "V Organisaation alayksikkö", "VI Organisaation alayksikkö", "VII Organisaation alayksikkö", "VIII Organisaation alayksikkö", "IX Organisaation alayksikkö", "X Organisaation alayksikkö", "XI Organisaation alayksikkö", "XII Organisaation alayksikkö", "XIII Organisaation alayksikkö", "XIV Organisaation alayksikkö", "XV Organisaation alayksikkö", "XVI Organisaation alayksikkö", "XVII Organisaation alayksikkö", "XVIII Organisaation alayksikkö", "XIX Organisaation alayksikkö", "XX Organisaation alayksikkö", "Julkaisun tekijät", "Julkaisun tekijöiden lukumäärä", "Kansainvälinen yhteisjulkaisu", "Yhteisjulkaisu yrityksen kanssa", "Julkaisun nimi", "Julkaisuvuosi", "Volyymi", "Numero", "Sivut", "Artikkelinumero", "Julkaisun kieli", "Lehden/sarjan nimi", "ISSN", "ISBN", "Emojulkaisun nimi", "Emojulkaisun toimittajat", "Kustantaja", "Julkaisun kustannuspaikka", "Julkaisumaa", "Julkaisun kansainvälisyys", "DOI-tunniste", "Pysyvä verkko-osoite", "Avoin saatavuus", "Lähdetietokannan koodi", "Julkaisun julkaisukanava (JUFO-ID)", "Julkaisun organisaatiokohtainen id", "Konferenssin vakiintunut nimi", "Avainsanat", "Julkaisu rinnakkaistallennettu", "Rinnakkaistallennetun version verkko-osoite", "ORCID", "Julkaisun tila", "AvoinSaatavuusKytkin", "JulkaisuKanavaOA" };
 
     
             String[] CSVSarakkeet2015 = { "Organisaatiotunnus", "Vuosi", "Julkaisutyyppi", "I Tieteenala", "II Tieteenala", "III Tieteenala", "IV Tieteenala", "V Tieteenala", "VI Tieteenala", "I Koulutusala", "II Koulutusala", "III Koulutusala", "IV Koulutusala", "V Koulutusala", "VI Koulutusala", "Organisaation tekijät", "I Organisaation alayksikkö", "II Organisaation alayksikkö", "III Organisaation alayksikkö", "IV Organisaation alayksikkö", "V Organisaation alayksikkö", "VI Organisaation alayksikkö", "VII Organisaation alayksikkö", "VIII Organisaation alayksikkö", "IX Organisaation alayksikkö", "X Organisaation alayksikkö", "XI Organisaation alayksikkö", "XII Organisaation alayksikkö", "XIII Organisaation alayksikkö", "XIV Organisaation alayksikkö", "XV Organisaation alayksikkö", "XVI Organisaation alayksikkö", "XVII Organisaation alayksikkö", "XVIII Organisaation alayksikkö", "XIX Organisaation alayksikkö", "XX Organisaation alayksikkö", "Julkaisun tekijät", "Julkaisun tekijöiden lukumäärä", "Kansainvälinen yhteisjulkaisu", "Yliopistollinen sairaanhoitopiiri, yhteisjulkaisu", "Valtion sektoritutkimuslaitos, yhteisjulkaisu", "Muu kotimainen tutkimusorganisaatio, yhteisjulkaisu", "Julkaisun nimi", "Julkaisuvuosi", "Volyymi", "Numero", "Sivut", "Artikkelinumero", "Julkaisun kieli", "Lehden/sarjan nimi", "ISSN", "ISBN", "Emojulkaisun nimi", "Emojulkaisun toimittajat", "Kustantaja", "Julkaisun kustannuspaikka", "Julkaisumaa", "Julkaisun kansainvälisyys", "DOI-tunniste", "Pysyvä verkko-osoite", "Avoin saatavuus", "Lähdetietokannan koodi",  "Julkaisun julkaisukanava (JUFO-ID)", "Julkaisun organisaatiokohtainen id", "Konferenssin vakiintunut nimi", "Avainsanat" };
-            String[] CSVSarakkeet2016 = { "Organisaatiotunnus", "Vuosi", "Julkaisutyyppi", "I Tieteenala", "II Tieteenala", "III Tieteenala", "IV Tieteenala", "V Tieteenala", "VI Tieteenala", "Organisaation tekijät", "I Organisaation alayksikkö", "II Organisaation alayksikkö", "III Organisaation alayksikkö", "IV Organisaation alayksikkö", "V Organisaation alayksikkö", "VI Organisaation alayksikkö", "VII Organisaation alayksikkö", "VIII Organisaation alayksikkö", "IX Organisaation alayksikkö", "X Organisaation alayksikkö", "XI Organisaation alayksikkö", "XII Organisaation alayksikkö", "XIII Organisaation alayksikkö", "XIV Organisaation alayksikkö", "XV Organisaation alayksikkö", "XVI Organisaation alayksikkö", "XVII Organisaation alayksikkö", "XVIII Organisaation alayksikkö", "XIX Organisaation alayksikkö", "XX Organisaation alayksikkö", "Julkaisun tekijät", "Julkaisun tekijöiden lukumäärä", "Kansainvälinen yhteisjulkaisu", "Yhteisjulkaisu yrityksen kanssa", "Julkaisun nimi", "Julkaisuvuosi", "Volyymi", "Numero", "Sivut", "Artikkelinumero", "Julkaisun kieli", "Lehden/sarjan nimi", "ISSN", "ISBN", "Emojulkaisun nimi", "Emojulkaisun toimittajat", "Kustantaja", "Julkaisun kustannuspaikka", "Julkaisumaa", "Julkaisun kansainvälisyys", "DOI-tunniste", "Pysyvä verkko-osoite", "Avoin saatavuus", "Lähdetietokannan koodi", "Julkaisun julkaisukanava (JUFO-ID)", "Julkaisun organisaatiokohtainen id", "Konferenssin vakiintunut nimi", "Avainsanat", "Julkaisu rinnakkaistallennettu", "Rinnakkaistallennetun version verkko-osoite", "ORCID", "Julkaisun tila" };
+            // edit 2021-02-23 uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
+            String[] CSVSarakkeet2016 = { "Organisaatiotunnus", "Vuosi", "Julkaisutyyppi", "I Tieteenala", "II Tieteenala", "III Tieteenala", "IV Tieteenala", "V Tieteenala", "VI Tieteenala", "Organisaation tekijät", "I Organisaation alayksikkö", "II Organisaation alayksikkö", "III Organisaation alayksikkö", "IV Organisaation alayksikkö", "V Organisaation alayksikkö", "VI Organisaation alayksikkö", "VII Organisaation alayksikkö", "VIII Organisaation alayksikkö", "IX Organisaation alayksikkö", "X Organisaation alayksikkö", "XI Organisaation alayksikkö", "XII Organisaation alayksikkö", "XIII Organisaation alayksikkö", "XIV Organisaation alayksikkö", "XV Organisaation alayksikkö", "XVI Organisaation alayksikkö", "XVII Organisaation alayksikkö", "XVIII Organisaation alayksikkö", "XIX Organisaation alayksikkö", "XX Organisaation alayksikkö", "Julkaisun tekijät", "Julkaisun tekijöiden lukumäärä", "Kansainvälinen yhteisjulkaisu", "Yhteisjulkaisu yrityksen kanssa", "Julkaisun nimi", "Julkaisuvuosi", "Volyymi", "Numero", "Sivut", "Artikkelinumero", "Julkaisun kieli", "Lehden/sarjan nimi", "ISSN", "ISBN", "Emojulkaisun nimi", "Emojulkaisun toimittajat", "Kustantaja", "Julkaisun kustannuspaikka", "Julkaisumaa", "Julkaisun kansainvälisyys", "DOI-tunniste", "Pysyvä verkko-osoite", "Avoin saatavuus", "Lähdetietokannan koodi", "Julkaisun julkaisukanava (JUFO-ID)", "Julkaisun organisaatiokohtainen id", "Konferenssin vakiintunut nimi", "Avainsanat", "Julkaisu rinnakkaistallennettu", "Rinnakkaistallennetun version verkko-osoite", "ORCID", "Julkaisun tila", "AvoinSaatavuusKytkin", "JulkaisuKanavaOA" };
 
             // Jos on tallennettu suoraan Excelistä niin sarakenimet ovat todennäköisesti "väärin" eli ä => "Ã¤", ö => "Ã¶" jne
             String[] CSVSarakkeet2015_utf_vaarin_amk = { "Ammattikorkeakoulu", "Vuosi", "Julkaisutyyppi", "I Tieteenala", "II Tieteenala", "III Tieteenala", "IV Tieteenala", "V Tieteenala", "VI Tieteenala", "I Koulutusala", "II Koulutusala", "III Koulutusala", "IV Koulutusala", "V Koulutusala", "VI Koulutusala", "Organisaation tekijÃ¤t", "I Organisaation alayksikkÃ¶", "II Organisaation alayksikkÃ¶", "III Organisaation alayksikkÃ¶", "IV Organisaation alayksikkÃ¶", "V Organisaation alayksikkÃ¶", "VI Organisaation alayksikkÃ¶", "VII Organisaation alayksikkÃ¶", "VIII Organisaation alayksikkÃ¶", "IX Organisaation alayksikkÃ¶", "X Organisaation alayksikkÃ¶", "XI Organisaation alayksikkÃ¶", "XII Organisaation alayksikkÃ¶", "XIII Organisaation alayksikkÃ¶", "XIV Organisaation alayksikkÃ¶", "XV Organisaation alayksikkÃ¶", "XVI Organisaation alayksikkÃ¶", "XVII Organisaation alayksikkÃ¶", "XVIII Organisaation alayksikkÃ¶", "XIX Organisaation alayksikkÃ¶", "XX Organisaation alayksikkÃ¶", "Julkaisun tekijÃ¤t", "Julkaisun tekijÃ¶iden lukumÃ¤Ã¤rÃ¤", "KansainvÃ¤linen yhteisjulkaisu", "Yliopistollinen sairaanhoitopiiri, yhteisjulkaisu", "Valtion sektoritutkimuslaitos, yhteisjulkaisu", "Muu kotimainen tutkimusorganisaatio, yhteisjulkaisu", "Julkaisun nimi", "Julkaisuvuosi", "Volyymi", "Numero", "Sivut", "Artikkelinumero", "Julkaisun kieli", "Lehden/sarjan nimi", "ISSN", "ISBN", "Emojulkaisun nimi", "Emojulkaisun toimittajat", "Kustantaja", "Julkaisun kustannuspaikka", "Julkaisumaa", "Julkaisun kansainvÃ¤lisyys", "DOI-tunniste", "PysyvÃ¤ verkko-osoite", "Avoin saatavuus", "LÃ¤hdetietokannan koodi", "Julkaisun julkaisukanava (JUFO-ID)", "Julkaisun id", "Konferenssin vakiintunut nimi", "Avainsanat" };
             String[] CSVSarakkeet2015_utf_vaarin_yo  = { "Organisaatiotunnus", "Vuosi", "Julkaisutyyppi", "I Tieteenala", "II Tieteenala", "III Tieteenala", "IV Tieteenala", "V Tieteenala", "VI Tieteenala", "I Koulutusala", "II Koulutusala", "III Koulutusala", "IV Koulutusala", "V Koulutusala", "VI Koulutusala", "Organisaation tekijÃ¤t", "I Organisaation alayksikkÃ¶", "II Organisaation alayksikkÃ¶", "III Organisaation alayksikkÃ¶", "IV Organisaation alayksikkÃ¶", "V Organisaation alayksikkÃ¶", "VI Organisaation alayksikkÃ¶", "VII Organisaation alayksikkÃ¶", "VIII Organisaation alayksikkÃ¶", "IX Organisaation alayksikkÃ¶", "X Organisaation alayksikkÃ¶", "XI Organisaation alayksikkÃ¶", "XII Organisaation alayksikkÃ¶", "XIII Organisaation alayksikkÃ¶", "XIV Organisaation alayksikkÃ¶", "XV Organisaation alayksikkÃ¶", "XVI Organisaation alayksikkÃ¶", "XVII Organisaation alayksikkÃ¶", "XVIII Organisaation alayksikkÃ¶", "XIX Organisaation alayksikkÃ¶", "XX Organisaation alayksikkÃ¶", "Julkaisun tekijÃ¤t", "Julkaisun tekijÃ¶iden lukumÃ¤Ã¤rÃ¤", "KansainvÃ¤linen yhteisjulkaisu", "Yliopistollinen sairaanhoitopiiri, yhteisjulkaisu", "Valtion sektoritutkimuslaitos, yhteisjulkaisu", "Muu kotimainen tutkimusorganisaatio, yhteisjulkaisu", "Julkaisun nimi", "Julkaisuvuosi", "Volyymi", "Numero", "Sivut", "Artikkelinumero", "Julkaisun kieli", "Lehden/sarjan nimi", "ISSN", "ISBN", "Emojulkaisun nimi", "Emojulkaisun toimittajat", "Kustantaja", "Julkaisun kustannuspaikka", "Julkaisumaa", "Julkaisun kansainvÃ¤lisyys", "DOI-tunniste", "PysyvÃ¤ verkko-osoite", "Avoin saatavuus", "LÃ¤hdetietokannan koodi", "Julkaisun julkaisukanava (JUFO-ID)", "Julkaisun organisaatiokohtainen id", "Konferenssin vakiintunut nimi", "Avainsanat" };
 
             // Jos on tallennettu suoraan Excelistä niin sarakenimet ovat todennäköisesti "väärin" eli ä => "Ã¤", ö => "Ã¶" jne
-            String[] CSVSarakkeet2016_utf_vaarin_amk = { "Ammattikorkeakoulu", "Vuosi", "Julkaisutyyppi", "I Tieteenala", "II Tieteenala", "III Tieteenala", "IV Tieteenala", "V Tieteenala", "VI Tieteenala", "Organisaation tekijÃ¤t", "I Organisaation alayksikkÃ¶", "II Organisaation alayksikkÃ¶", "III Organisaation alayksikkÃ¶", "IV Organisaation alayksikkÃ¶", "V Organisaation alayksikkÃ¶", "VI Organisaation alayksikkÃ¶", "VII Organisaation alayksikkÃ¶", "VIII Organisaation alayksikkÃ¶", "IX Organisaation alayksikkÃ¶", "X Organisaation alayksikkÃ¶", "XI Organisaation alayksikkÃ¶", "XII Organisaation alayksikkÃ¶", "XIII Organisaation alayksikkÃ¶", "XIV Organisaation alayksikkÃ¶", "XV Organisaation alayksikkÃ¶", "XVI Organisaation alayksikkÃ¶", "XVII Organisaation alayksikkÃ¶", "XVIII Organisaation alayksikkÃ¶", "XIX Organisaation alayksikkÃ¶", "XX Organisaation alayksikkÃ¶", "Julkaisun tekijÃ¤t", "Julkaisun tekijÃ¶iden lukumÃ¤Ã¤rÃ¤", "KansainvÃ¤linen yhteisjulkaisu", "Yhteisjulkaisu yrityksen kanssa", "Julkaisun nimi", "Julkaisuvuosi", "Volyymi", "Numero", "Sivut", "Artikkelinumero", "Julkaisun kieli", "Lehden/sarjan nimi", "ISSN", "ISBN", "Emojulkaisun nimi", "Emojulkaisun toimittajat", "Kustantaja", "Julkaisun kustannuspaikka", "Julkaisumaa", "Julkaisun kansainvÃ¤lisyys", "DOI-tunniste", "PysyvÃ¤ verkko-osoite", "Avoin saatavuus", "LÃ¤hdetietokannan koodi", "Julkaisun julkaisukanava (JUFO-ID)", "Julkaisun organisaatiokohtainen id", "Konferenssin vakiintunut nimi", "Avainsanat", "Julkaisu rinnakkaistallennettu", "Rinnakkaistallennetun version verkko-osoite", "ORCID", "Julkaisun tila" };
-            String[] CSVSarakkeet2016_utf_vaarin_yo = { "Organisaatiotunnus", "Vuosi", "Julkaisutyyppi", "I Tieteenala", "II Tieteenala", "III Tieteenala", "IV Tieteenala", "V Tieteenala", "VI Tieteenala","Organisaation tekijÃ¤t", "I Organisaation alayksikkÃ¶", "II Organisaation alayksikkÃ¶", "III Organisaation alayksikkÃ¶", "IV Organisaation alayksikkÃ¶", "V Organisaation alayksikkÃ¶", "VI Organisaation alayksikkÃ¶", "VII Organisaation alayksikkÃ¶", "VIII Organisaation alayksikkÃ¶", "IX Organisaation alayksikkÃ¶", "X Organisaation alayksikkÃ¶", "XI Organisaation alayksikkÃ¶", "XII Organisaation alayksikkÃ¶", "XIII Organisaation alayksikkÃ¶", "XIV Organisaation alayksikkÃ¶", "XV Organisaation alayksikkÃ¶", "XVI Organisaation alayksikkÃ¶", "XVII Organisaation alayksikkÃ¶", "XVIII Organisaation alayksikkÃ¶", "XIX Organisaation alayksikkÃ¶", "XX Organisaation alayksikkÃ¶", "Julkaisun tekijÃ¤t", "Julkaisun tekijÃ¶iden lukumÃ¤Ã¤rÃ¤", "KansainvÃ¤linen yhteisjulkaisu", "Yhteisjulkaisu yrityksen kanssa", "Julkaisun nimi", "Julkaisuvuosi", "Volyymi", "Numero", "Sivut", "Artikkelinumero", "Julkaisun kieli", "Lehden/sarjan nimi", "ISSN", "ISBN", "Emojulkaisun nimi", "Emojulkaisun toimittajat", "Kustantaja", "Julkaisun kustannuspaikka", "Julkaisumaa", "Julkaisun kansainvÃ¤lisyys", "DOI-tunniste", "PysyvÃ¤ verkko-osoite", "Avoin saatavuus", "LÃ¤hdetietokannan koodi", "Julkaisun julkaisukanava (JUFO-ID)", "Julkaisun organisaatiokohtainen id", "Konferenssin vakiintunut nimi", "Avainsanat", "Julkaisu rinnakkaistallennettu", "Rinnakkaistallennetun version verkko-osoite", "ORCID", "Julkaisun tila" };
+            // edit 2021-02-23 uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
+            String[] CSVSarakkeet2016_utf_vaarin_amk = { "Ammattikorkeakoulu", "Vuosi", "Julkaisutyyppi", "I Tieteenala", "II Tieteenala", "III Tieteenala", "IV Tieteenala", "V Tieteenala", "VI Tieteenala", "Organisaation tekijÃ¤t", "I Organisaation alayksikkÃ¶", "II Organisaation alayksikkÃ¶", "III Organisaation alayksikkÃ¶", "IV Organisaation alayksikkÃ¶", "V Organisaation alayksikkÃ¶", "VI Organisaation alayksikkÃ¶", "VII Organisaation alayksikkÃ¶", "VIII Organisaation alayksikkÃ¶", "IX Organisaation alayksikkÃ¶", "X Organisaation alayksikkÃ¶", "XI Organisaation alayksikkÃ¶", "XII Organisaation alayksikkÃ¶", "XIII Organisaation alayksikkÃ¶", "XIV Organisaation alayksikkÃ¶", "XV Organisaation alayksikkÃ¶", "XVI Organisaation alayksikkÃ¶", "XVII Organisaation alayksikkÃ¶", "XVIII Organisaation alayksikkÃ¶", "XIX Organisaation alayksikkÃ¶", "XX Organisaation alayksikkÃ¶", "Julkaisun tekijÃ¤t", "Julkaisun tekijÃ¶iden lukumÃ¤Ã¤rÃ¤", "KansainvÃ¤linen yhteisjulkaisu", "Yhteisjulkaisu yrityksen kanssa", "Julkaisun nimi", "Julkaisuvuosi", "Volyymi", "Numero", "Sivut", "Artikkelinumero", "Julkaisun kieli", "Lehden/sarjan nimi", "ISSN", "ISBN", "Emojulkaisun nimi", "Emojulkaisun toimittajat", "Kustantaja", "Julkaisun kustannuspaikka", "Julkaisumaa", "Julkaisun kansainvÃ¤lisyys", "DOI-tunniste", "PysyvÃ¤ verkko-osoite", "Avoin saatavuus", "LÃ¤hdetietokannan koodi", "Julkaisun julkaisukanava (JUFO-ID)", "Julkaisun organisaatiokohtainen id", "Konferenssin vakiintunut nimi", "Avainsanat", "Julkaisu rinnakkaistallennettu", "Rinnakkaistallennetun version verkko-osoite", "ORCID", "Julkaisun tila", "AvoinSaatavuusKytkin", "JulkaisuKanavaOA" };
+            String[] CSVSarakkeet2016_utf_vaarin_yo = { "Organisaatiotunnus", "Vuosi", "Julkaisutyyppi", "I Tieteenala", "II Tieteenala", "III Tieteenala", "IV Tieteenala", "V Tieteenala", "VI Tieteenala", "Organisaation tekijÃ¤t", "I Organisaation alayksikkÃ¶", "II Organisaation alayksikkÃ¶", "III Organisaation alayksikkÃ¶", "IV Organisaation alayksikkÃ¶", "V Organisaation alayksikkÃ¶", "VI Organisaation alayksikkÃ¶", "VII Organisaation alayksikkÃ¶", "VIII Organisaation alayksikkÃ¶", "IX Organisaation alayksikkÃ¶", "X Organisaation alayksikkÃ¶", "XI Organisaation alayksikkÃ¶", "XII Organisaation alayksikkÃ¶", "XIII Organisaation alayksikkÃ¶", "XIV Organisaation alayksikkÃ¶", "XV Organisaation alayksikkÃ¶", "XVI Organisaation alayksikkÃ¶", "XVII Organisaation alayksikkÃ¶", "XVIII Organisaation alayksikkÃ¶", "XIX Organisaation alayksikkÃ¶", "XX Organisaation alayksikkÃ¶", "Julkaisun tekijÃ¤t", "Julkaisun tekijÃ¶iden lukumÃ¤Ã¤rÃ¤", "KansainvÃ¤linen yhteisjulkaisu", "Yhteisjulkaisu yrityksen kanssa", "Julkaisun nimi", "Julkaisuvuosi", "Volyymi", "Numero", "Sivut", "Artikkelinumero", "Julkaisun kieli", "Lehden/sarjan nimi", "ISSN", "ISBN", "Emojulkaisun nimi", "Emojulkaisun toimittajat", "Kustantaja", "Julkaisun kustannuspaikka", "Julkaisumaa", "Julkaisun kansainvÃ¤lisyys", "DOI-tunniste", "PysyvÃ¤ verkko-osoite", "Avoin saatavuus", "LÃ¤hdetietokannan koodi", "Julkaisun julkaisukanava (JUFO-ID)", "Julkaisun organisaatiokohtainen id", "Konferenssin vakiintunut nimi", "Avainsanat", "Julkaisu rinnakkaistallennettu", "Rinnakkaistallennetun version verkko-osoite", "ORCID", "Julkaisun tila", "AvoinSaatavuusKytkin", "JulkaisuKanavaOA" };
 
 
 
@@ -1120,14 +1129,15 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
 
             string[] elements2015 = { "OrganisaatioTunnus", "IlmoitusVuosi", "JulkaisunTunnus", "JulkaisunTilaKoodi", "JulkaisunOrgTunnus", "YksikkoKoodi", "JulkaisuVuosi", "JulkaisunNimi", "TekijatiedotTeksti", "TekijoidenLkm", "SivunumeroTeksti", "Artikkelinumero", "AvainsanaTeksti", "ISBN", "JufoTunnus", "JufoLuokkaKoodi", "JulkaisumaaKoodi", "LehdenNimi", "ISSN", "VolyymiTeksti", "LehdenNumeroTeksti", "KonferenssinNimi", "KustantajanNimi", "KustannuspaikkaTeksti", "EmojulkaisunNimi", "EmojulkaisunToimittajatTeksti", "JulkaisutyyppiKoodi", "TieteenalaKoodi", "KoulutusalaKoodi", "YhteisjulkaisuKVKytkin", "YhteisjulkaisuSHPKytkin", "YhteisjulkaisuTutkimuslaitosKytkin", "YhteisjulkaisuMuuKytkin", "JulkaisunKansainvalisyysKytkin", "JulkaisunKieliKoodi", "AvoinSaatavuusKoodi", "EVOjulkaisuKytkin", "DOI", "PysyvaOsoiteTeksti", "LahdetietokannanTunnus", "Sukunimi", "Etunimet", "YksikkoKoodi2", "ORCID", "HankenumeroTeksti", "RahoittajaOrgTunnus" };
 
-            string[] elements2016 = { "OrganisaatioTunnus", "IlmoitusVuosi", "JulkaisunTunnus", "JulkaisunTilaKoodi", "JulkaisunOrgTunnus", "YksikkoKoodi", "JulkaisuVuosi", "JulkaisunNimi", "TekijatiedotTeksti", "TekijoidenLkm", "SivunumeroTeksti", "Artikkelinumero", "AvainsanaTeksti", "ISBN", "JufoTunnus", "JufoLuokkaKoodi", "JulkaisumaaKoodi", "LehdenNimi", "ISSN", "VolyymiTeksti", "LehdenNumeroTeksti", "KonferenssinNimi", "KustantajanNimi", "KustannuspaikkaTeksti", "EmojulkaisunNimi", "EmojulkaisunToimittajatTeksti", "JulkaisutyyppiKoodi", "TieteenalaKoodi", "KoulutusalaKoodi", "YhteisjulkaisuKVKytkin", "JulkaisunKansainvalisyysKytkin", "JulkaisunKieliKoodi", "AvoinSaatavuusKoodi", "YhteisjulkaisuYritysKytkin", "RinnakkaistallennettuKytkin", "RinnakkaistallennusOsoiteTeksti", "DOI", "PysyvaOsoiteTeksti", "LahdetietokannanTunnus", "Sukunimi", "Etunimet", "YksikkoKoodi2", "ORCID" };
+            // edit 2021-02-23 uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
+            string[] elements2016 = { "OrganisaatioTunnus", "IlmoitusVuosi", "JulkaisunTunnus", "JulkaisunTilaKoodi", "JulkaisunOrgTunnus", "YksikkoKoodi", "JulkaisuVuosi", "JulkaisunNimi", "TekijatiedotTeksti", "TekijoidenLkm", "SivunumeroTeksti", "Artikkelinumero", "AvainsanaTeksti", "ISBN", "JufoTunnus", "JufoLuokkaKoodi", "JulkaisumaaKoodi", "LehdenNimi", "ISSN", "VolyymiTeksti", "LehdenNumeroTeksti", "KonferenssinNimi", "KustantajanNimi", "KustannuspaikkaTeksti", "EmojulkaisunNimi", "EmojulkaisunToimittajatTeksti", "JulkaisutyyppiKoodi", "TieteenalaKoodi", "KoulutusalaKoodi", "YhteisjulkaisuKVKytkin", "JulkaisunKansainvalisyysKytkin", "JulkaisunKieliKoodi", "AvoinSaatavuusKoodi", "AvoinSaatavuusKytkin", "JulkaisuKanavaOA", "YhteisjulkaisuYritysKytkin", "RinnakkaistallennettuKytkin", "RinnakkaistallennusOsoiteTeksti", "DOI", "PysyvaOsoiteTeksti", "LahdetietokannanTunnus", "Sukunimi", "Etunimet", "YksikkoKoodi2", "ORCID" };
 
             if (getVuosi() == 2015)
             {
                 elements = elements2015;
             }
 
-            if (getVuosi() == 2016 || getVuosi() == 2017 || getVuosi() == 2018 || getVuosi() == 2019 || getVuosi() == 2020)
+            if (getVuosi() == 2016 || getVuosi() == 2017 || getVuosi() == 2018 || getVuosi() == 2019 || getVuosi() == 2020 || getVuosi() == 2021)
             {
                 elements = elements2016;
             }
@@ -1809,16 +1819,24 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
             string[] elements = { "OrganisaatioTunnus", "IlmoitusVuosi", "JulkaisunTunnus", "JulkaisunTilaKoodi", "JulkaisunOrgTunnus", "YksikkoKoodi", "JulkaisuVuosi", "JulkaisunNimi", "TekijatiedotTeksti", "TekijoidenLkm", "SivunumeroTeksti", "Artikkelinumero", "AvainsanaTeksti", "ISBN", "JufoTunnus", "JufoLuokkaKoodi", "JulkaisumaaKoodi", "LehdenNimi", "ISSN", "VolyymiTeksti", "LehdenNumeroTeksti", "KonferenssinNimi", "KustantajanNimi", "KustannuspaikkaTeksti", "EmojulkaisunNimi", "EmojulkaisunToimittajatTeksti", "JulkaisutyyppiKoodi", "TieteenalaKoodi", "KoulutusalaKoodi", "YhteisjulkaisuKVKytkin", "YhteisjulkaisuSHPKytkin", "YhteisjulkaisuTutkimuslaitosKytkin", "YhteisjulkaisuMuuKytkin", "JulkaisunKansainvalisyysKytkin", "JulkaisunKieliKoodi", "AvoinSaatavuusKoodi", "EVOjulkaisuKytkin", "DOI", "PysyvaOsoiteTeksti", "LahdetietokannanTunnus", "Sukunimi", "Etunimet", "YksikkoKoodi2", "ORCID", "HankenumeroTeksti", "RahoittajaOrgTunnus" };
 
             string[] elements2015 = { "OrganisaatioTunnus", "IlmoitusVuosi", "JulkaisunTunnus", "JulkaisunTilaKoodi", "JulkaisunOrgTunnus", "YksikkoKoodi", "JulkaisuVuosi", "JulkaisunNimi", "TekijatiedotTeksti", "TekijoidenLkm", "SivunumeroTeksti", "Artikkelinumero", "AvainsanaTeksti", "ISBN", "JufoTunnus", "JufoLuokkaKoodi", "JulkaisumaaKoodi", "LehdenNimi", "ISSN", "VolyymiTeksti", "LehdenNumeroTeksti", "KonferenssinNimi", "KustantajanNimi", "KustannuspaikkaTeksti", "EmojulkaisunNimi", "EmojulkaisunToimittajatTeksti", "JulkaisutyyppiKoodi", "TieteenalaKoodi", "KoulutusalaKoodi", "YhteisjulkaisuKVKytkin", "YhteisjulkaisuSHPKytkin", "YhteisjulkaisuTutkimuslaitosKytkin", "YhteisjulkaisuMuuKytkin", "JulkaisunKansainvalisyysKytkin", "JulkaisunKieliKoodi", "AvoinSaatavuusKoodi", "EVOjulkaisuKytkin", "DOI", "PysyvaOsoiteTeksti", "LahdetietokannanTunnus", "Sukunimi", "Etunimet", "YksikkoKoodi2", "ORCID", "HankenumeroTeksti", "RahoittajaOrgTunnus" };
+            
+            // edit 2021-02-23 uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
+            string[] elements2016 = { "OrganisaatioTunnus", "IlmoitusVuosi", "JulkaisunTunnus", "JulkaisunTilaKoodi", "JulkaisunOrgTunnus", "YksikkoKoodi", "JulkaisuVuosi", "JulkaisunNimi", "TekijatiedotTeksti", "TekijoidenLkm", "SivunumeroTeksti", "Artikkelinumero", "AvainsanaTeksti", "ISBN", "JufoTunnus", "JufoLuokkaKoodi", "JulkaisumaaKoodi", "LehdenNimi", "ISSN", "VolyymiTeksti", "LehdenNumeroTeksti", "KonferenssinNimi", "KustantajanNimi", "KustannuspaikkaTeksti", "EmojulkaisunNimi", "EmojulkaisunToimittajatTeksti", "JulkaisutyyppiKoodi", "TieteenalaKoodi", "KoulutusalaKoodi", "YhteisjulkaisuKVKytkin", "JulkaisunKansainvalisyysKytkin", "JulkaisunKieliKoodi", "AvoinSaatavuusKoodi", "AvoinSaatavuusKytkin", "JulkaisuKanavaOA", "YhteisjulkaisuYritysKytkin", "RinnakkaistallennettuKytkin", "RinnakkaistallennusOsoiteTeksti", "DOI", "PysyvaOsoiteTeksti", "LahdetietokannanTunnus", "Sukunimi", "Etunimet", "YksikkoKoodi2", "ORCID" };
 
-            string[] elements2016 = { "OrganisaatioTunnus", "IlmoitusVuosi", "JulkaisunTunnus", "JulkaisunTilaKoodi", "JulkaisunOrgTunnus", "YksikkoKoodi", "JulkaisuVuosi", "JulkaisunNimi", "TekijatiedotTeksti", "TekijoidenLkm", "SivunumeroTeksti", "Artikkelinumero", "AvainsanaTeksti", "ISBN", "JufoTunnus", "JufoLuokkaKoodi", "JulkaisumaaKoodi", "LehdenNimi", "ISSN", "VolyymiTeksti", "LehdenNumeroTeksti", "KonferenssinNimi", "KustantajanNimi", "KustannuspaikkaTeksti", "EmojulkaisunNimi", "EmojulkaisunToimittajatTeksti", "JulkaisutyyppiKoodi", "TieteenalaKoodi", "KoulutusalaKoodi", "YhteisjulkaisuKVKytkin", "JulkaisunKansainvalisyysKytkin", "JulkaisunKieliKoodi", "AvoinSaatavuusKoodi", "YhteisjulkaisuYritysKytkin", "RinnakkaistallennettuKytkin", "RinnakkaistallennusOsoiteTeksti", "DOI", "PysyvaOsoiteTeksti", "LahdetietokannanTunnus", "Sukunimi", "Etunimet", "YksikkoKoodi2", "ORCID" };
+            // edit 2021-02-23 uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
+            string[] elements2017 = { "OrganisaatioTunnus", "IlmoitusVuosi", "JulkaisunTunnus", "JulkaisunTilaKoodi", "JulkaisunOrgTunnus", "YksikkoKoodi", "JulkaisuVuosi", "JulkaisunNimi", "TekijatiedotTeksti", "TekijoidenLkm", "SivunumeroTeksti", "Artikkelinumero", "AvainsanaTeksti", "ISBN", "JufoTunnus", "JufoLuokkaKoodi", "JulkaisumaaKoodi", "LehdenNimi", "ISSN", "VolyymiTeksti", "LehdenNumeroTeksti", "KonferenssinNimi", "KustantajanNimi", "KustannuspaikkaTeksti", "EmojulkaisunNimi", "EmojulkaisunToimittajatTeksti", "JulkaisutyyppiKoodi", "TieteenalaKoodi", "KoulutusalaKoodi", "YhteisjulkaisuKVKytkin", "JulkaisunKansainvalisyysKytkin", "JulkaisunKieliKoodi", "AvoinSaatavuusKoodi", "AvoinSaatavuusKytkin", "JulkaisuKanavaOA", "YhteisjulkaisuYritysKytkin", "RinnakkaistallennettuKytkin", "RinnakkaistallennusOsoiteTeksti", "DOI", "PysyvaOsoiteTeksti", "LahdetietokannanTunnus", "Sukunimi", "Etunimet", "YksikkoKoodi2", "ORCID" };
 
-            string[] elements2017 = { "OrganisaatioTunnus", "IlmoitusVuosi", "JulkaisunTunnus", "JulkaisunTilaKoodi", "JulkaisunOrgTunnus", "YksikkoKoodi", "JulkaisuVuosi", "JulkaisunNimi", "TekijatiedotTeksti", "TekijoidenLkm", "SivunumeroTeksti", "Artikkelinumero", "AvainsanaTeksti", "ISBN", "JufoTunnus", "JufoLuokkaKoodi", "JulkaisumaaKoodi", "LehdenNimi", "ISSN", "VolyymiTeksti", "LehdenNumeroTeksti", "KonferenssinNimi", "KustantajanNimi", "KustannuspaikkaTeksti", "EmojulkaisunNimi", "EmojulkaisunToimittajatTeksti", "JulkaisutyyppiKoodi", "TieteenalaKoodi", "KoulutusalaKoodi", "YhteisjulkaisuKVKytkin", "JulkaisunKansainvalisyysKytkin", "JulkaisunKieliKoodi", "AvoinSaatavuusKoodi", "YhteisjulkaisuYritysKytkin", "RinnakkaistallennettuKytkin", "RinnakkaistallennusOsoiteTeksti", "DOI", "PysyvaOsoiteTeksti", "LahdetietokannanTunnus", "Sukunimi", "Etunimet", "YksikkoKoodi2", "ORCID" };
+            // edit 2021-02-23 uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
+            string[] elements2018 = { "OrganisaatioTunnus", "IlmoitusVuosi", "JulkaisunTunnus", "JulkaisunTilaKoodi", "JulkaisunOrgTunnus", "YksikkoKoodi", "JulkaisuVuosi", "JulkaisunNimi", "TekijatiedotTeksti", "TekijoidenLkm", "SivunumeroTeksti", "Artikkelinumero", "AvainsanaTeksti", "ISBN", "JufoTunnus", "JufoLuokkaKoodi", "JulkaisumaaKoodi", "LehdenNimi", "ISSN", "VolyymiTeksti", "LehdenNumeroTeksti", "KonferenssinNimi", "KustantajanNimi", "KustannuspaikkaTeksti", "EmojulkaisunNimi", "EmojulkaisunToimittajatTeksti", "JulkaisutyyppiKoodi", "TieteenalaKoodi", "KoulutusalaKoodi", "YhteisjulkaisuKVKytkin", "JulkaisunKansainvalisyysKytkin", "JulkaisunKieliKoodi", "AvoinSaatavuusKoodi", "AvoinSaatavuusKytkin", "JulkaisuKanavaOA", "YhteisjulkaisuYritysKytkin", "RinnakkaistallennettuKytkin", "RinnakkaistallennusOsoiteTeksti", "DOI", "PysyvaOsoiteTeksti", "LahdetietokannanTunnus", "Sukunimi", "Etunimet", "YksikkoKoodi2", "ORCID" };
 
-            string[] elements2018 = { "OrganisaatioTunnus", "IlmoitusVuosi", "JulkaisunTunnus", "JulkaisunTilaKoodi", "JulkaisunOrgTunnus", "YksikkoKoodi", "JulkaisuVuosi", "JulkaisunNimi", "TekijatiedotTeksti", "TekijoidenLkm", "SivunumeroTeksti", "Artikkelinumero", "AvainsanaTeksti", "ISBN", "JufoTunnus", "JufoLuokkaKoodi", "JulkaisumaaKoodi", "LehdenNimi", "ISSN", "VolyymiTeksti", "LehdenNumeroTeksti", "KonferenssinNimi", "KustantajanNimi", "KustannuspaikkaTeksti", "EmojulkaisunNimi", "EmojulkaisunToimittajatTeksti", "JulkaisutyyppiKoodi", "TieteenalaKoodi", "KoulutusalaKoodi", "YhteisjulkaisuKVKytkin", "JulkaisunKansainvalisyysKytkin", "JulkaisunKieliKoodi", "AvoinSaatavuusKoodi", "YhteisjulkaisuYritysKytkin", "RinnakkaistallennettuKytkin", "RinnakkaistallennusOsoiteTeksti", "DOI", "PysyvaOsoiteTeksti", "LahdetietokannanTunnus", "Sukunimi", "Etunimet", "YksikkoKoodi2", "ORCID" };
+            // edit 2021-02-23 uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
+            string[] elements2019 = { "OrganisaatioTunnus", "IlmoitusVuosi", "JulkaisunTunnus", "JulkaisunTilaKoodi", "JulkaisunOrgTunnus", "YksikkoKoodi", "JulkaisuVuosi", "JulkaisunNimi", "TekijatiedotTeksti", "TekijoidenLkm", "SivunumeroTeksti", "Artikkelinumero", "AvainsanaTeksti", "ISBN", "JufoTunnus", "JufoLuokkaKoodi", "JulkaisumaaKoodi", "LehdenNimi", "ISSN", "VolyymiTeksti", "LehdenNumeroTeksti", "KonferenssinNimi", "KustantajanNimi", "KustannuspaikkaTeksti", "EmojulkaisunNimi", "EmojulkaisunToimittajatTeksti", "JulkaisutyyppiKoodi", "TieteenalaKoodi", "KoulutusalaKoodi", "YhteisjulkaisuKVKytkin", "JulkaisunKansainvalisyysKytkin", "JulkaisunKieliKoodi", "AvoinSaatavuusKoodi", "AvoinSaatavuusKytkin", "JulkaisuKanavaOA", "YhteisjulkaisuYritysKytkin", "RinnakkaistallennettuKytkin", "RinnakkaistallennusOsoiteTeksti", "DOI", "PysyvaOsoiteTeksti", "LahdetietokannanTunnus", "Sukunimi", "Etunimet", "YksikkoKoodi2", "ORCID" };
 
-            string[] elements2019 = { "OrganisaatioTunnus", "IlmoitusVuosi", "JulkaisunTunnus", "JulkaisunTilaKoodi", "JulkaisunOrgTunnus", "YksikkoKoodi", "JulkaisuVuosi", "JulkaisunNimi", "TekijatiedotTeksti", "TekijoidenLkm", "SivunumeroTeksti", "Artikkelinumero", "AvainsanaTeksti", "ISBN", "JufoTunnus", "JufoLuokkaKoodi", "JulkaisumaaKoodi", "LehdenNimi", "ISSN", "VolyymiTeksti", "LehdenNumeroTeksti", "KonferenssinNimi", "KustantajanNimi", "KustannuspaikkaTeksti", "EmojulkaisunNimi", "EmojulkaisunToimittajatTeksti", "JulkaisutyyppiKoodi", "TieteenalaKoodi", "KoulutusalaKoodi", "YhteisjulkaisuKVKytkin", "JulkaisunKansainvalisyysKytkin", "JulkaisunKieliKoodi", "AvoinSaatavuusKoodi", "YhteisjulkaisuYritysKytkin", "RinnakkaistallennettuKytkin", "RinnakkaistallennusOsoiteTeksti", "DOI", "PysyvaOsoiteTeksti", "LahdetietokannanTunnus", "Sukunimi", "Etunimet", "YksikkoKoodi2", "ORCID" };
+            // edit 2021-02-23 uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
+            string[] elements2020 = { "OrganisaatioTunnus", "IlmoitusVuosi", "JulkaisunTunnus", "JulkaisunTilaKoodi", "JulkaisunOrgTunnus", "YksikkoKoodi", "JulkaisuVuosi", "JulkaisunNimi", "TekijatiedotTeksti", "TekijoidenLkm", "SivunumeroTeksti", "Artikkelinumero", "AvainsanaTeksti", "ISBN", "JufoTunnus", "JufoLuokkaKoodi", "JulkaisumaaKoodi", "LehdenNimi", "ISSN", "VolyymiTeksti", "LehdenNumeroTeksti", "KonferenssinNimi", "KustantajanNimi", "KustannuspaikkaTeksti", "EmojulkaisunNimi", "EmojulkaisunToimittajatTeksti", "JulkaisutyyppiKoodi", "TieteenalaKoodi", "KoulutusalaKoodi", "YhteisjulkaisuKVKytkin", "JulkaisunKansainvalisyysKytkin", "JulkaisunKieliKoodi", "AvoinSaatavuusKoodi", "AvoinSaatavuusKytkin", "JulkaisuKanavaOA", "YhteisjulkaisuYritysKytkin", "RinnakkaistallennettuKytkin", "RinnakkaistallennusOsoiteTeksti", "DOI", "PysyvaOsoiteTeksti", "LahdetietokannanTunnus", "Sukunimi", "Etunimet", "YksikkoKoodi2", "ORCID" };
 
-            string[] elements2020 = { "OrganisaatioTunnus", "IlmoitusVuosi", "JulkaisunTunnus", "JulkaisunTilaKoodi", "JulkaisunOrgTunnus", "YksikkoKoodi", "JulkaisuVuosi", "JulkaisunNimi", "TekijatiedotTeksti", "TekijoidenLkm", "SivunumeroTeksti", "Artikkelinumero", "AvainsanaTeksti", "ISBN", "JufoTunnus", "JufoLuokkaKoodi", "JulkaisumaaKoodi", "LehdenNimi", "ISSN", "VolyymiTeksti", "LehdenNumeroTeksti", "KonferenssinNimi", "KustantajanNimi", "KustannuspaikkaTeksti", "EmojulkaisunNimi", "EmojulkaisunToimittajatTeksti", "JulkaisutyyppiKoodi", "TieteenalaKoodi", "KoulutusalaKoodi", "YhteisjulkaisuKVKytkin", "JulkaisunKansainvalisyysKytkin", "JulkaisunKieliKoodi", "AvoinSaatavuusKoodi", "YhteisjulkaisuYritysKytkin", "RinnakkaistallennettuKytkin", "RinnakkaistallennusOsoiteTeksti", "DOI", "PysyvaOsoiteTeksti", "LahdetietokannanTunnus", "Sukunimi", "Etunimet", "YksikkoKoodi2", "ORCID" };
+            // edit 2021-02-23 uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
+            string[] elements2021 = { "OrganisaatioTunnus", "IlmoitusVuosi", "JulkaisunTunnus", "JulkaisunTilaKoodi", "JulkaisunOrgTunnus", "YksikkoKoodi", "JulkaisuVuosi", "JulkaisunNimi", "TekijatiedotTeksti", "TekijoidenLkm", "SivunumeroTeksti", "Artikkelinumero", "AvainsanaTeksti", "ISBN", "JufoTunnus", "JufoLuokkaKoodi", "JulkaisumaaKoodi", "LehdenNimi", "ISSN", "VolyymiTeksti", "LehdenNumeroTeksti", "KonferenssinNimi", "KustantajanNimi", "KustannuspaikkaTeksti", "EmojulkaisunNimi", "EmojulkaisunToimittajatTeksti", "JulkaisutyyppiKoodi", "TieteenalaKoodi", "KoulutusalaKoodi", "YhteisjulkaisuKVKytkin", "JulkaisunKansainvalisyysKytkin", "JulkaisunKieliKoodi", "AvoinSaatavuusKoodi", "AvoinSaatavuusKytkin", "JulkaisuKanavaOA", "YhteisjulkaisuYritysKytkin", "RinnakkaistallennettuKytkin", "RinnakkaistallennusOsoiteTeksti", "DOI", "PysyvaOsoiteTeksti", "LahdetietokannanTunnus", "Sukunimi", "Etunimet", "YksikkoKoodi2", "ORCID" };
 
             if (getVuosi() == 2015)
             {
@@ -1848,6 +1866,11 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
             if (getVuosi() == 2020)
             {
                 elements = elements2020;
+            }
+
+            if (getVuosi() == 2021)
+            {
+                elements = elements2021;
             }
 
             return elements[numero];
@@ -2132,7 +2155,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                             // 2017 raportointivuosi 2018 
                             // 2016 raportointivuosi 2017
                             // - 6 koska koulutus ala on poistettu
-                            if (vuosiV == 2016 || vuosiV == 2017 || vuosiV == 2018 || vuosiV == 2019 || vuosiV == 2020)
+                            if (vuosiV == 2016 || vuosiV == 2017 || vuosiV == 2018 || vuosiV == 2019 || vuosiV == 2020 || vuosiV == 2021)
                             {
                                 cellValues2[0] = cellValues1[0];    // korkeakoulu Organisaatio
                                 cellValues2[1] = cellValues1[1];    // Ilmoitusvuosi
@@ -2208,29 +2231,38 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                                 cellValues2[31] = cellValues1[40]; // Julkaisun kieli // Ent Muu kotimainen tutkimusorganisaatio, yhteisjulkaisu
                                 cellValues2[32] = cellValues1[52]; // Avoin saatavuus
 
-                                cellValues2[33] = cellValues1[33]; // Yhteisjulkaisu yrityksen kanssa "YhteisjulkaisuYritysKytkin"
+                                // edit 2021-02-23 uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
+                                cellValues2[33] = cellValues1[62]; // AvoinSaatavuusKytkin
+                                cellValues2[34] = cellValues1[63]; // JulkaisuKanavaOA
+
+                                // edit 2021-02-23 naita indekseja on muutettu kaksi eteenpain, koska lisatty
+                                // uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
+                                // Siispa kun aikaisemmin oli cellValues2[34] = cellValues1[58]; // Julkaisu rinnakkaistallennettu
+                                // niin nyt se on cellValues2[36] = cellValues1[58]; // Julkaisu rinnakkaistallennettu
+
+                                cellValues2[35] = cellValues1[33]; // Yhteisjulkaisu yrityksen kanssa "YhteisjulkaisuYritysKytkin"
 
                                 // Julkaisu rinnakkaistallennettu, Rinnakkaistallennetun version verkko-osoite
-                                cellValues2[34] = cellValues1[58]; // Julkaisu rinnakkaistallennettu
-                                cellValues2[35] = cellValues1[59]; // Rinnakkaistallennetun version verkko-osoite
+                                cellValues2[36] = cellValues1[58]; // Julkaisu rinnakkaistallennettu
+                                cellValues2[37] = cellValues1[59]; // Rinnakkaistallennetun version verkko-osoite
 
-                                cellValues2[36] = cellValues1[50]; // DOI-tunniste
-                                cellValues2[37] = cellValues1[51]; // Pysyvä verkko-osoite
-                                cellValues2[38] = cellValues1[53]; // Lähdetietokannan koodi
+                                cellValues2[38] = cellValues1[50]; // DOI-tunniste
+                                cellValues2[39] = cellValues1[51]; // Pysyvä verkko-osoite
+                                cellValues2[40] = cellValues1[53]; // Lähdetietokannan koodi
 
-                                cellValues2[39] = cellValues1[9]; // Organisaation tekijät
-                                cellValues2[40] = null;
-                                cellValues2[41] = cellValues1[10]; // Organisaation alayksikkö
+                                cellValues2[41] = cellValues1[9]; // Organisaation tekijät
+                                cellValues2[42] = null;
+                                cellValues2[43] = cellValues1[10]; // Organisaation alayksikkö
 
                                 for (int k = 1; k < 20; k++)
                                 {
                                     if (cellValues1[10 + k] != null)
                                     {
-                                        cellValues2[41] = cellValues2[41] + ";" + cellValues1[10 + k];
+                                        cellValues2[43] = cellValues2[43] + ";" + cellValues1[10 + k];
                                     }
                                 }
                                 //  ORCID    
-                                cellValues2[42] = cellValues1[60]; // ORCID                        
+                                cellValues2[44] = cellValues1[60]; // ORCID                        
 
                             } // 2016,...,2020 loppuu... Pysyköhän kasassa?
 
@@ -2293,9 +2325,9 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
 
             int maximi = 0;
 
-            if (getVuosi() == 2016 || getVuosi() == 2017 || getVuosi() == 2018 || getVuosi() == 2019 || getVuosi() == 2020)
+            if (getVuosi() == 2016 || getVuosi() == 2017 || getVuosi() == 2018 || getVuosi() == 2019 || getVuosi() == 2020 || getVuosi() == 2021)
             {
-                maximi = 62;    // Voi että!
+                maximi = 64;    // Voi että!
             }
 
             if ( getVuosi() == 2015 ) 
@@ -2516,7 +2548,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                                                 num_ok = true;
                                             }
 
-                                            if ((getVuosi() == 2016 || getVuosi() == 2017 || getVuosi() == 2018 || getVuosi() == 2019 || getVuosi() == 2020) && num == 62)
+                                            if ((getVuosi() == 2016 || getVuosi() == 2017 || getVuosi() == 2018 || getVuosi() == 2019 || getVuosi() == 2020 || getVuosi() == 2021) && num == 64)
                                             {
                                                 num_ok = true;
                                             }
@@ -3892,8 +3924,8 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
             // 	45	 RahoittajaOrgTunnus
 
 
-            // 2016 ja 2017
-            // indeksi  kenttä  (vuoden 2016 ja 2017 osalta)
+            // 2016 ja myohemmin
+            // indeksi  kenttä  (vuosi 2016 ja myohemmin)
             // 	0	 OrganisaatioTunnus
             // 	1	 IlmoitusVuosi
             // 	2	 JulkaisunTunnus
@@ -3929,18 +3961,22 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
             // 	34 => 31 !! 2016:	 JulkaisunKieliKoodi            Entinen YhteisjulkaisuMuuKytkin  Ei käytössä 2016
             // 	35 => 32 !! 2016:	 AvoinSaatavuusKoodi
 
-            //  33    !! 2016 YhteisjulkaisuYritysKytkin  Yhteisjulkaisu yrityksen kanssa Entinen YhteisjulkaisuSHPKytkin 2015
+            // edit 2021-02-23 uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
+            //  33   AvoinSaatavuusKytkin
+            //  34   JulkaisukanavaOA
 
-            // 	43	=> 34 !! 2016: Julkaisu rinnakkaistallennettu
-            // 	44	=> 35 !! 2016: Rinnakkaistallennetun version verkko-osoite
+            //  35    !! 2016 YhteisjulkaisuYritysKytkin  Yhteisjulkaisu yrityksen kanssa Entinen YhteisjulkaisuSHPKytkin 2015
+
+            // 	43	=> 36 !! 2016: Julkaisu rinnakkaistallennettu
+            // 	44	=> 37 !! 2016: Rinnakkaistallennetun version verkko-osoite
             
-            // 	36	 DOI
-            // 	37	 PysyvaOsoiteTeksti
-            // 	38	 LahdetietokannanTunnus
-            // 	39	 Sukunimi
-            // 	40	 Etunimet
-            // 	41	 YksikkoKoodi2
-            // 	42	 ORCID         
+            // 	38	 DOI
+            // 	39	 PysyvaOsoiteTeksti
+            // 	40	 LahdetietokannanTunnus
+            // 	41	 Sukunimi
+            // 	42	 Etunimet
+            // 	43	 YksikkoKoodi2
+            // 	44	 ORCID         
                         
 
             // Tässä nyt mennään eikä meinata, koko taulukko läpi, rivi riviltä, sarake sarakkeelta ...
@@ -4960,13 +4996,14 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     }
 
 
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020)
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021)
                     {
 
                         // Tekijän sukunimi on pakollinen
-                        if ((rivi.Cells[39] == null) || (rivi.Cells[39].Value.ToString().Length == 0))
+                        // edit 2021-02-23 indeksit muutettu 39 -> 41, koska lisatty uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
+                        if ((rivi.Cells[41] == null) || (rivi.Cells[41].Value.ToString().Length == 0))
                         {
-                            XMLdataGridView.Rows[num].Cells[39].Style.BackColor = Color.Red;
+                            XMLdataGridView.Rows[num].Cells[41].Style.BackColor = Color.Red;
                             TallennaXMLButton.Enabled = false;
 
                             virheita += "Pakollinen tieto.  Julkaisun tekijän nimi ei voi olla tyhjä, rivillä " + (num + 1) + virhejulkaisuorgtunnus + ".\n\r\n\r";
@@ -4974,11 +5011,11 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                             virheIlmoitus2();
 
                             virheRivi.Add(num + 1);
-                            virheSarake.Add(39);
+                            virheSarake.Add(41);
 
-                            RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "Pakollinen tieto. Julkaisun tekijän nimi ei voi olla tyhjä", rivi.Cells[39].Value.ToString()); 
+                            RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "Pakollinen tieto. Julkaisun tekijän nimi ei voi olla tyhjä", rivi.Cells[41].Value.ToString()); 
 
-                            dgvc[39].HeaderCell.Style.BackColor = Color.Red;
+                            dgvc[41].HeaderCell.Style.BackColor = Color.Red;
                             rowStyle = XMLdataGridView.Rows[num].HeaderCell.Style;
                             rowStyle.BackColor = Color.Red;
                             XMLdataGridView.Rows[num].HeaderCell.Style = rowStyle;
@@ -4986,12 +5023,12 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
 
 
                         // Tekijän sukunimi siistimistä
-                        if ((rivi.Cells[39] != null) || (rivi.Cells[39].Value.ToString().Trim().Length > 0))
+                        if ((rivi.Cells[41] != null) || (rivi.Cells[41].Value.ToString().Trim().Length > 0))
                         {
 
-                            string str = PoistaViimeisetPuolipisteet(rivi.Cells[39].Value.ToString().Trim());
+                            string str = PoistaViimeisetPuolipisteet(rivi.Cells[41].Value.ToString().Trim());
 
-                            rivi.Cells[39].Value = str;
+                            rivi.Cells[41].Value = str;
                         }
                     }
 
@@ -5737,7 +5774,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     }
 
                     // AvoinSaatavuusKoodi Indeksi 35 => 32 2016
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020)
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021)
                     {
                         // AvoinSaatavuusKoodi oltava numeerinen 0 tai 1
                         if ((rivi.Cells[32] != null) || (rivi.Cells[32].Value.ToString().Length > 0))
@@ -5946,31 +5983,31 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
 
                     }
 
-
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020)
+                    // edit 2021-02-23 indeksit muutettu 36 -> 38, koska lisatty uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021)
                     {
 
-                        if ((rivi.Cells[36].Value.ToString().Trim().Length > 0))
+                        if ((rivi.Cells[38].Value.ToString().Trim().Length > 0))
                         {
-                            string doi = Regex.Replace(rivi.Cells[36].Value.ToString(), " ", ""); // Ei välilyöntejä	
-                            rivi.Cells[36].Value = doi;
+                            string doi = Regex.Replace(rivi.Cells[38].Value.ToString(), " ", ""); // Ei välilyöntejä	
+                            rivi.Cells[38].Value = doi;
 
-                            bool val = TarkistaDOI(rivi.Cells[36].Value.ToString());
+                            bool val = TarkistaDOI(rivi.Cells[38].Value.ToString());
 
                             if (!val)
                             {
-                                XMLdataGridView.Rows[num].Cells[36].Style.BackColor = Color.Red;
+                                XMLdataGridView.Rows[num].Cells[38].Style.BackColor = Color.Red;
                                 TallennaXMLButton.Enabled = false;
 
-                                virheita += "DOI: " + rivi.Cells[36].Value.ToString() + " virheellinen, rivillä " + (num + 1) + virhejulkaisuorgtunnus + ".\n\r\n\r";
+                                virheita += "DOI: " + rivi.Cells[38].Value.ToString() + " virheellinen, rivillä " + (num + 1) + virhejulkaisuorgtunnus + ".\n\r\n\r";
                                 virheIlmoitus2();
 
                                 virheRivi.Add(num + 1);
-                                virheSarake.Add(36);
+                                virheSarake.Add(38);
 
-                                RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "DOI virheellinen", rivi.Cells[36].Value.ToString()); 
+                                RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "DOI virheellinen", rivi.Cells[38].Value.ToString()); 
 
-                                dgvc[36].HeaderCell.Style.BackColor = Color.Red;
+                                dgvc[38].HeaderCell.Style.BackColor = Color.Red;
                                 rowStyle = XMLdataGridView.Rows[num].HeaderCell.Style;
                                 rowStyle.BackColor = Color.Red;
                                 XMLdataGridView.Rows[num].HeaderCell.Style = rowStyle;
@@ -6039,51 +6076,51 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
 
                     }
 
-
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020)
+                    // edit 2021-02-23 indeksit muutettu 37 -> 39, koska lisatty uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021)
                     {
-                        if ((rivi.Cells[37].Value.ToString().Trim().Length > 0))
+                        if ((rivi.Cells[39].Value.ToString().Trim().Length > 0))
                         {
-                            string osoite = Regex.Replace(rivi.Cells[37].Value.ToString(), " ", ""); // Ei välilyöntejä	
+                            string osoite = Regex.Replace(rivi.Cells[39].Value.ToString(), " ", ""); // Ei välilyöntejä	
 
                             osoite = Regex.Replace(osoite, "http://http://", "http://");            // Ei tupla http://
 
                             osoite = Regex.Replace(osoite, "doi:", "");            // Ei doi:
                             osoite = Regex.Replace(osoite, "DOI:", "");            // Ei DOI:
 
-                            rivi.Cells[37].Value = osoite;
+                            rivi.Cells[39].Value = osoite;
 
                             if (osoite.Contains("URN:ISBN:") && !TarkistaOsoite(osoite))
                             {
 
                                 string korjattu_urn_osoite = "http://urn.fi/" + osoite;
 
-                                errorTextBox.AppendText("Korjataan pysyvä osoite: " + rivi.Cells[37].Value.ToString() + " => " + korjattu_urn_osoite + " rivillä: " + (num + 1) + "\n\r\n\r");
+                                errorTextBox.AppendText("Korjataan pysyvä osoite: " + rivi.Cells[39].Value.ToString() + " => " + korjattu_urn_osoite + " rivillä: " + (num + 1) + "\n\r\n\r");
 
                                 if (LokiOlemassa(masterloki))
                                 {
-                                    KirjoitaLokiin("Korjataan pysyvä osoite : " + rivi.Cells[37].Value.ToString() + " => " + korjattu_urn_osoite + "\n\r\n\r", masterloki);
+                                    KirjoitaLokiin("Korjataan pysyvä osoite : " + rivi.Cells[39].Value.ToString() + " => " + korjattu_urn_osoite + "\n\r\n\r", masterloki);
                                 }
 
-                                rivi.Cells[37].Value = korjattu_urn_osoite;
+                                rivi.Cells[39].Value = korjattu_urn_osoite;
                             }
 
-                            bool val = TarkistaOsoite(rivi.Cells[37].Value.ToString());
+                            bool val = TarkistaOsoite(rivi.Cells[39].Value.ToString());
 
                             if (!val)
                             {
-                                XMLdataGridView.Rows[num].Cells[37].Style.BackColor = Color.Red;
+                                XMLdataGridView.Rows[num].Cells[39].Style.BackColor = Color.Red;
                                 TallennaXMLButton.Enabled = false;
 
-                                virheita += "Osoite: " + rivi.Cells[37].Value.ToString() + " virheellinen, rivillä " + (num + 1) + virhejulkaisuorgtunnus + ".\n\r\n\r";
+                                virheita += "Osoite: " + rivi.Cells[39].Value.ToString() + " virheellinen, rivillä " + (num + 1) + virhejulkaisuorgtunnus + ".\n\r\n\r";
                                 virheIlmoitus2();
 
                                 virheRivi.Add(num + 1);
-                                virheSarake.Add(37);
+                                virheSarake.Add(39);
 
-                                RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "Osoite virheellinen", rivi.Cells[37].Value.ToString()); 
+                                RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "Osoite virheellinen", rivi.Cells[39].Value.ToString()); 
 
-                                dgvc[37].HeaderCell.Style.BackColor = Color.Red;
+                                dgvc[39].HeaderCell.Style.BackColor = Color.Red;
                                 rowStyle = XMLdataGridView.Rows[num].HeaderCell.Style;
                                 rowStyle.BackColor = Color.Red;
                                 XMLdataGridView.Rows[num].HeaderCell.Style = rowStyle;
@@ -6120,28 +6157,28 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                         }
                     }
 
-
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020)
+                    // edit 2021-02-23 indeksit muutettu 42 -> 44, koska lisatty uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021)
                     {
                         // Tarkista ORCID
-                        if ((rivi.Cells[42].Value.ToString().Trim().Length > 0))
+                        if ((rivi.Cells[44].Value.ToString().Trim().Length > 0))
                         {
-                            bool val = TarkistaORCIDArvot(rivi.Cells[42].Value.ToString());
+                            bool val = TarkistaORCIDArvot(rivi.Cells[44].Value.ToString());
 
                             if (!val)
                             {
-                                XMLdataGridView.Rows[num].Cells[42].Style.BackColor = Color.Red;
+                                XMLdataGridView.Rows[num].Cells[44].Style.BackColor = Color.Red;
                                 TallennaXMLButton.Enabled = false;
 
-                                virheita += "ORCID: " + rivi.Cells[42].Value.ToString() + " virheellinen, rivillä " + (num + 1) + virhejulkaisuorgtunnus + ".\n\r\n\r";
+                                virheita += "ORCID: " + rivi.Cells[44].Value.ToString() + " virheellinen, rivillä " + (num + 1) + virhejulkaisuorgtunnus + ".\n\r\n\r";
                                 virheIlmoitus2();
 
                                 virheRivi.Add(num + 1);
-                                virheSarake.Add(42);
+                                virheSarake.Add(44);
 
-                                RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "ORCID virheellinen", rivi.Cells[42].Value.ToString()); 
+                                RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "ORCID virheellinen", rivi.Cells[44].Value.ToString()); 
 
-                                dgvc[42].HeaderCell.Style.BackColor = Color.Red;
+                                dgvc[44].HeaderCell.Style.BackColor = Color.Red;
                                 rowStyle = XMLdataGridView.Rows[num].HeaderCell.Style;
                                 rowStyle.BackColor = Color.Red;
                                 XMLdataGridView.Rows[num].HeaderCell.Style = rowStyle;
@@ -6175,16 +6212,17 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
 
 
                     // YhteisjulkaisuYritysKytkin
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020)
+                    // edit indeksit muutettu 33 -> 35, koska lisatty uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021)
                     {
                         // YhteisjulkaisuYritysKytkin oltava numeerinen 0 tai 1
-                        if ((rivi.Cells[33] != null) || (rivi.Cells[33].Value.ToString().Length > 0))
+                        if ((rivi.Cells[35] != null) || (rivi.Cells[35].Value.ToString().Length > 0))
                         {
                             int nollaYx;
 
-                            if (!Int32.TryParse(rivi.Cells[33].Value.ToString().Trim(), out nollaYx))
+                            if (!Int32.TryParse(rivi.Cells[35].Value.ToString().Trim(), out nollaYx))
                             {
-                                XMLdataGridView.Rows[num].Cells[33].Style.BackColor = Color.Red;
+                                XMLdataGridView.Rows[num].Cells[35].Style.BackColor = Color.Red;
                                 TallennaXMLButton.Enabled = false;
 
                                 virheita += "YhteisjulkaisuYritysKytkin pitää olla numeerinen arvo (0 tai 1), rivillä " + (num + 1) + virhejulkaisuorgtunnus + ".\n\r\n\r";
@@ -6192,32 +6230,32 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                                 virheIlmoitus2();
 
                                 virheRivi.Add(num + 1);
-                                virheSarake.Add(33);
+                                virheSarake.Add(35);
 
-                                RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "YhteisjulkaisuYritysKytkin 0 (ei) tai 1 (kyllä) virheellinen arvo ", rivi.Cells[33].Value.ToString()); 
+                                RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "YhteisjulkaisuYritysKytkin 0 (ei) tai 1 (kyllä) virheellinen arvo ", rivi.Cells[35].Value.ToString()); 
 
-                                dgvc[33].HeaderCell.Style.BackColor = Color.Red;
+                                dgvc[35].HeaderCell.Style.BackColor = Color.Red;
                                 rowStyle = XMLdataGridView.Rows[num].HeaderCell.Style;
                                 rowStyle.BackColor = Color.Red;
                                 XMLdataGridView.Rows[num].HeaderCell.Style = rowStyle;
 
-                                Boolean val = CheckKytkinkoodi(rivi.Cells[33].Value.ToString(), rivi.Cells[0].Value.ToString().Trim());
+                                Boolean val = CheckKytkinkoodi(rivi.Cells[35].Value.ToString(), rivi.Cells[0].Value.ToString().Trim());
 
                                 if (!val)
                                 {
-                                    XMLdataGridView.Rows[num].Cells[33].Style.BackColor = Color.Yellow;
+                                    XMLdataGridView.Rows[num].Cells[35].Style.BackColor = Color.Yellow;
                                     TallennaXMLButton.Enabled = false;
 
-                                    virheita += "YhteisjulkaisuYritysKytkin koodi rivillä " + (num + 1) + " virheellinen: " + rivi.Cells[33].Value.ToString() + virhejulkaisuorgtunnus + ".\n\r\n\r";
+                                    virheita += "YhteisjulkaisuYritysKytkin koodi rivillä " + (num + 1) + " virheellinen: " + rivi.Cells[35].Value.ToString() + virhejulkaisuorgtunnus + ".\n\r\n\r";
 
                                     virheIlmoitus2();
 
                                     virheRivi.Add(num + 1);
-                                    virheSarake.Add(33);
+                                    virheSarake.Add(35);
 
-                                    RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "YhteisjulkaisuYritysKytkin 0 (ei) tai 1 (kyllä) virheellinen arvo ", rivi.Cells[33].Value.ToString()); 
+                                    RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "YhteisjulkaisuYritysKytkin 0 (ei) tai 1 (kyllä) virheellinen arvo ", rivi.Cells[35].Value.ToString()); 
 
-                                    dgvc[33].HeaderCell.Style.BackColor = Color.Yellow;
+                                    dgvc[35].HeaderCell.Style.BackColor = Color.Yellow;
                                     rowStyle = XMLdataGridView.Rows[num].HeaderCell.Style;
                                     rowStyle.BackColor = Color.Yellow;
                                     XMLdataGridView.Rows[num].HeaderCell.Style = rowStyle;
@@ -6225,7 +6263,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                             }
                             else if (nollaYx < 0 || nollaYx > 1)
                             {
-                                XMLdataGridView.Rows[num].Cells[33].Style.BackColor = Color.Red;
+                                XMLdataGridView.Rows[num].Cells[35].Style.BackColor = Color.Red;
                                 TallennaXMLButton.Enabled = false;
 
                                 virheita += "YhteisjulkaisuYritysKytkin pitää olla 0 (ei) tai 1 (kyllä), rivillä " + (num + 1) + ", numero: " + nollaYx + " on virheellinen arvo." + virhejulkaisuorgtunnus + ".\n\r\n\r";
@@ -6233,11 +6271,11 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                                 virheIlmoitus2();
 
                                 virheRivi.Add(num + 1);
-                                virheSarake.Add(33);
+                                virheSarake.Add(35);
 
-                                RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "YhteisjulkaisuYritysKytkin 0 (ei) tai 1 (kyllä) virheellinen arvo ", rivi.Cells[33].Value.ToString()); 
+                                RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "YhteisjulkaisuYritysKytkin 0 (ei) tai 1 (kyllä) virheellinen arvo ", rivi.Cells[35].Value.ToString()); 
 
-                                dgvc[33].HeaderCell.Style.BackColor = Color.Red;
+                                dgvc[35].HeaderCell.Style.BackColor = Color.Red;
                                 rowStyle = XMLdataGridView.Rows[num].HeaderCell.Style;
                                 rowStyle.BackColor = Color.Red;
                                 XMLdataGridView.Rows[num].HeaderCell.Style = rowStyle;
@@ -6246,16 +6284,17 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     }
 
                     // RinnakkaistallennettuKytkin
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020)
+                    // edit 2021-02-23 indeksit muutettu 34 -> 36 ja 35 -> 37, koska lisatty uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021)
                     {
                         // RinnakkaistallennettuKytkin on oltava numeerinen 0 tai 1
-                        if ((rivi.Cells[34] != null) || (rivi.Cells[34].Value.ToString().Length > 0))
+                        if ((rivi.Cells[36] != null) || (rivi.Cells[36].Value.ToString().Length > 0))
                         {
                             int nollaYx;
 
-                            if (!Int32.TryParse(rivi.Cells[34].Value.ToString().Trim(), out nollaYx))
+                            if (!Int32.TryParse(rivi.Cells[36].Value.ToString().Trim(), out nollaYx))
                             {
-                                XMLdataGridView.Rows[num].Cells[34].Style.BackColor = Color.Red;
+                                XMLdataGridView.Rows[num].Cells[36].Style.BackColor = Color.Red;
                                 TallennaXMLButton.Enabled = false;
 
                                 virheita += "RinnakkaistallennettuKytkin pitää olla numeerinen arvo (0 tai 1), rivillä " + (num + 1) + virhejulkaisuorgtunnus + ".\n\r\n\r";
@@ -6263,33 +6302,33 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                                 virheIlmoitus2();
 
                                 virheRivi.Add(num + 1);
-                                virheSarake.Add(34);
+                                virheSarake.Add(36);
 
 
-                                RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "RinnakkaistallennettuKytkin 0 (ei) tai 1 (kyllä) virheellinen arvo ", rivi.Cells[34].Value.ToString()); 
+                                RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "RinnakkaistallennettuKytkin 0 (ei) tai 1 (kyllä) virheellinen arvo ", rivi.Cells[36].Value.ToString()); 
 
-                                dgvc[34].HeaderCell.Style.BackColor = Color.Red;
+                                dgvc[36].HeaderCell.Style.BackColor = Color.Red;
                                 rowStyle = XMLdataGridView.Rows[num].HeaderCell.Style;
                                 rowStyle.BackColor = Color.Red;
                                 XMLdataGridView.Rows[num].HeaderCell.Style = rowStyle;
 
-                                Boolean val = CheckKytkinkoodi(rivi.Cells[34].Value.ToString(), rivi.Cells[0].Value.ToString().Trim());
+                                Boolean val = CheckKytkinkoodi(rivi.Cells[36].Value.ToString(), rivi.Cells[0].Value.ToString().Trim());
 
                                 if (!val)
                                 {
-                                    XMLdataGridView.Rows[num].Cells[34].Style.BackColor = Color.Yellow;
+                                    XMLdataGridView.Rows[num].Cells[36].Style.BackColor = Color.Yellow;
                                     TallennaXMLButton.Enabled = false;
 
-                                    virheita += "RinnakkaistallennettuKytkin koodi rivillä " + (num + 1) + " virheellinen: " + rivi.Cells[34].Value.ToString() + virhejulkaisuorgtunnus + ".\n\r\n\r";
+                                    virheita += "RinnakkaistallennettuKytkin koodi rivillä " + (num + 1) + " virheellinen: " + rivi.Cells[36].Value.ToString() + virhejulkaisuorgtunnus + ".\n\r\n\r";
 
                                     virheIlmoitus2();
 
                                     virheRivi.Add(num + 1);
-                                    virheSarake.Add(34);
+                                    virheSarake.Add(36);
 
-                                    RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "RinnakkaistallennettuKytkin 0 (ei) tai 1 (kyllä) virheellinen arvo ", rivi.Cells[34].Value.ToString()); 
+                                    RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "RinnakkaistallennettuKytkin 0 (ei) tai 1 (kyllä) virheellinen arvo ", rivi.Cells[36].Value.ToString()); 
 
-                                    dgvc[34].HeaderCell.Style.BackColor = Color.Yellow;
+                                    dgvc[36].HeaderCell.Style.BackColor = Color.Yellow;
                                     rowStyle = XMLdataGridView.Rows[num].HeaderCell.Style;
                                     rowStyle.BackColor = Color.Yellow;
                                     XMLdataGridView.Rows[num].HeaderCell.Style = rowStyle;
@@ -6297,7 +6336,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                             }
                             else if (nollaYx < 0 || nollaYx > 1)
                             {
-                                XMLdataGridView.Rows[num].Cells[34].Style.BackColor = Color.Red;
+                                XMLdataGridView.Rows[num].Cells[36].Style.BackColor = Color.Red;
                                 TallennaXMLButton.Enabled = false;
 
                                 virheita += "RinnakkaistallennettuKytkin pitää olla 0 (ei) tai 1 (kyllä), rivillä " + (num + 1) + ", numero: " + nollaYx + " on virheellinen arvo." + virhejulkaisuorgtunnus + ".\n\r\n\r";
@@ -6305,20 +6344,20 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                                 virheIlmoitus2();
 
                                 virheRivi.Add(num + 1);
-                                virheSarake.Add(34);
+                                virheSarake.Add(36);
 
-                                RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "RinnakkaistallennettuKytkin 0 (ei) tai 1 (kyllä) virheellinen arvo ", rivi.Cells[34].Value.ToString()); 
+                                RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "RinnakkaistallennettuKytkin 0 (ei) tai 1 (kyllä) virheellinen arvo ", rivi.Cells[36].Value.ToString()); 
 
-                                dgvc[34].HeaderCell.Style.BackColor = Color.Red;
+                                dgvc[36].HeaderCell.Style.BackColor = Color.Red;
                                 rowStyle = XMLdataGridView.Rows[num].HeaderCell.Style;
                                 rowStyle.BackColor = Color.Red;
                                 XMLdataGridView.Rows[num].HeaderCell.Style = rowStyle;
                             }
 
-                            if (nollaYx == 1 && rivi.Cells[35].Value.ToString().Trim().Length == 0)
+                            if (nollaYx == 1 && rivi.Cells[37].Value.ToString().Trim().Length == 0)
                             {
-                                XMLdataGridView.Rows[num].Cells[34].Style.BackColor = Color.Red;
-                                XMLdataGridView.Rows[num].Cells[35].Style.BackColor = Color.Red;
+                                XMLdataGridView.Rows[num].Cells[36].Style.BackColor = Color.Red;
+                                XMLdataGridView.Rows[num].Cells[37].Style.BackColor = Color.Red;
 
                                 TallennaXMLButton.Enabled = false;
 
@@ -6327,34 +6366,34 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                                 virheIlmoitus2();
 
                                 virheRivi.Add(num + 1);
-                                virheSarake.Add(35);
+                                virheSarake.Add(37);
 
-                                RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "Rinnakkaistallennetun verkko-osoite puuttuu", rivi.Cells[35].Value.ToString()); 
+                                RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "Rinnakkaistallennetun verkko-osoite puuttuu", rivi.Cells[37].Value.ToString()); 
 
-                                dgvc[34].HeaderCell.Style.BackColor = Color.Red;
-                                dgvc[35].HeaderCell.Style.BackColor = Color.Red;
+                                dgvc[36].HeaderCell.Style.BackColor = Color.Red;
+                                dgvc[37].HeaderCell.Style.BackColor = Color.Red;
                                 rowStyle = XMLdataGridView.Rows[num].HeaderCell.Style;
                                 rowStyle.BackColor = Color.Red;
                                 XMLdataGridView.Rows[num].HeaderCell.Style = rowStyle;
 
                             }
 
-                            if (nollaYx == 1 && !TarkistaOsoite(rivi.Cells[35].Value.ToString().Trim()))
+                            if (nollaYx == 1 && !TarkistaOsoite(rivi.Cells[37].Value.ToString().Trim()))
                             {
-                                XMLdataGridView.Rows[num].Cells[35].Style.BackColor = Color.Red;
+                                XMLdataGridView.Rows[num].Cells[37].Style.BackColor = Color.Red;
 
                                 TallennaXMLButton.Enabled = false;
 
-                                virheita += "Rinnakkaistallennetun verkko-osoite: " + rivi.Cells[35].Value.ToString().Trim() + " virheellinen, " + virhejulkaisuorgtunnus + ".\n\r\n\r";
+                                virheita += "Rinnakkaistallennetun verkko-osoite: " + rivi.Cells[37].Value.ToString().Trim() + " virheellinen, " + virhejulkaisuorgtunnus + ".\n\r\n\r";
 
                                 virheIlmoitus2();
 
                                 virheRivi.Add(num + 1);
-                                virheSarake.Add(35);
+                                virheSarake.Add(37);
 
-                                RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "Rinnakkaistallennetun verkko-osoite", rivi.Cells[35].Value.ToString()); 
+                                RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "Rinnakkaistallennetun verkko-osoite", rivi.Cells[37].Value.ToString()); 
 
-                                dgvc[35].HeaderCell.Style.BackColor = Color.Red;
+                                dgvc[37].HeaderCell.Style.BackColor = Color.Red;
                                 rowStyle = XMLdataGridView.Rows[num].HeaderCell.Style;
                                 rowStyle.BackColor = Color.Red;
                                 XMLdataGridView.Rows[num].HeaderCell.Style = rowStyle;

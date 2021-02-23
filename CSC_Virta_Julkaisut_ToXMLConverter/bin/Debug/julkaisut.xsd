@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:julkaisut="urn:mace:funet.fi:julkaisut/2015/03/01" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" targetNamespace="urn:mace:funet.fi:julkaisut/2015/03/01" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.13" vc:minVersion="1.0">
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:julkaisut="urn:mace:funet.fi:julkaisut/2015/03/01" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" targetNamespace="urn:mace:funet.fi:julkaisut/2015/03/01" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.12" vc:minVersion="1.0">
 	<xs:include schemaLocation="tyypit.xsd">
 		<xs:annotation>
 			<xs:documentation xml:lang="fi">
@@ -11,7 +11,7 @@
 	<xs:element name="Julkaisut">
 		<xs:complexType>
 			<xs:sequence>
-				<!-- Julkaisu - yksittäisen julkaiun tiedot -->
+				<!-- Julkaisu - yksittäisen julkaiun tiedot  -->
 				<xs:element name="Julkaisu" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:sequence>
@@ -73,6 +73,7 @@
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
+											
 							<xs:element name="JulkaisuVuosi" type="julkaisut:VuosiTyyppi" minOccurs="1" maxOccurs="1">
 								<xs:annotation>
 									<xs:documentation xml:lang="fi">Vuosi, jolloin julkaisu on julkaistu ensimmäistä kertaa versiona, jossa on täydelliset viitetiedot.</xs:documentation>
@@ -151,7 +152,7 @@
 							</xs:element>
 							<xs:element name="ISSN" type="julkaisut:ISSNTyyppi" minOccurs="0" maxOccurs="2">
 								<xs:annotation>
-									<xs:documentation xml:lang="fi">Lehden, monografiaa tai emojulkaisua julkaisseen sarjan ISSN-numero ensisijaisesti painetun version mukaisesti. Jos painettua versiota ei ole, ilmoitetaan elektronisen version ISSN-numero.</xs:documentation>
+									<xs:documentation xml:lang="fi">Lehden, monografiaa tai emojulkaisua julkaisseen sarjan ISSN-numero ensisijaisesti painetun version mukaisesti. Jos painettua versiota ei ole, ilmoitetaan elektronisen version ISSN-numero. Taidealan julkaisulle raportoidaan mikäli julkaisulla on ISSN-numero.</xs:documentation>
 								</xs:annotation>
 							</xs:element>
 							<xs:element name="VolyymiTeksti" type="julkaisut:VolyymiTekstiTyyppi" minOccurs="0" maxOccurs="1">
@@ -171,7 +172,7 @@
 							</xs:element>
 							<xs:element name="KustantajanNimi" type="julkaisut:KustantajanNimiTyyppi" minOccurs="0" maxOccurs="1">
 								<xs:annotation>
-									<xs:documentation xml:lang="fi">Julkaisun kustantajan nimi mahdollisimman täydellisenä ja koko-naan auki kirjoitettuna </xs:documentation>
+									<xs:documentation xml:lang="fi">Julkaisun kustantajan nimi mahdollisimman täydellisenä ja kokonaan auki kirjoitettuna. Taidealan julkaisun kustantaja tai julkaisija on se ulkopuolinen taho, joka on mahdollistanut taiteellisen toiminnan tuloksen julkiseksi tekemisen. Esimerkiksi tuottaja, galleristi tai kustantaja. Yhteystiedot raportoidaan tarvittaessa.</xs:documentation>
 								</xs:annotation>
 							</xs:element>
 							<xs:element name="KustannuspaikkaTeksti" type="julkaisut:KustannuspaikkaTekstiTyyppi" minOccurs="0" maxOccurs="1">
@@ -181,7 +182,7 @@
 							</xs:element>
 							<xs:element name="EmojulkaisunNimi" type="julkaisut:EmojulkaisunNimiTyyppi" minOccurs="0" maxOccurs="1">
 								<xs:annotation>
-									<xs:documentation xml:lang="fi">Toimitetun teoksen nimi, jossa artikkeli on julkaistu. </xs:documentation>
+									<xs:documentation xml:lang="fi">Toimitetun teoksen nimi, jossa artikkeli on julkaistu. Taidealan julkaisun nimi, jonka osatoteutus raportoitava julkaisu on (jos raportoidaan F2). Tieto kerrotaan, jos se on tiedossa.</xs:documentation>
 								</xs:annotation>
 							</xs:element>
 							<xs:element name="EmojulkaisunToimittajatTeksti" type="julkaisut:EmojulkaisunToimittajatTekstiTyyppi" minOccurs="0" maxOccurs="1">
@@ -189,11 +190,52 @@
 									<xs:documentation xml:lang="fi">Toimitetun teoksen toimittajat siinä muodossa ja järjestyksessä, jossa ne on listattu alkuperäisessä julkaisussa tai lähdetietokannassa.</xs:documentation>
 								</xs:annotation>
 							</xs:element>
-							<xs:element name="JulkaisutyyppiKoodi" type="julkaisut:JulkaisutyyppiKoodiTyyppi" minOccurs="1" maxOccurs="1">
+							<xs:element name="JulkaisutyyppiKoodi" type="julkaisut:JulkaisutyyppiKoodiTyyppi" minOccurs="0" maxOccurs="1">
 								<xs:annotation>
-									<xs:documentation xml:lang="fi">Julkaisutyyppiluokituksen mukainen luokka</xs:documentation>
+									<xs:documentation xml:lang="fi">Julkaisutyyppiluokituksen mukainen luokka. Saa olla tyhja vain tiedonkeruuseen kuulumattomille julkaisuille.</xs:documentation>
 								</xs:annotation>
 							</xs:element>
+							
+							<!-- Tasta alkavat uudet kentat attribuuttipohjaiselle julkaisutyyppiluokittelulle -->
+							
+							<xs:element name="MuotoKoodi" type="julkaisut:MuotoKoodiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisun muoto. Hyödynnetään nykyisiä tiedonkeruukäsikirjan määrittelyitä mahdollisuuksien mukaan. Artikkeli sisältää alkuperäis- ja katsausartikkelit, kirjan tai lehden johdannot ja esipuheet, lyhyet tutkimusselostukset, pääkirjoitukset, keskustelupuheenvuorot ja kommentit. Erillisteos sisältää monografiat/kirjat, tutkimus- ja kehitystyöhön perustuva kehittämis- tai tutkimusraportti, selvitykset, ns. white paperit, working papers- ja discussion papers -tyyppiset julkaisut. Toimitustyö sisältää useista eri kirjottajien artikkeleista koostuvat kirjat tai lehden erikoisnumerot, toimitustyöt kokoomateoksissa. Abstrakti sisältää konferenssiesitelmien abstraktit, laajennetut abstraktit. Posteri sisältää konferenssiesitelmien posterit.</xs:documentation>
+								</xs:annotation>
+							</xs:element>							
+							<xs:element name="YleisoKoodi" type="julkaisut:YleisoKoodiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisukanavan kohdeyleisön perusteella julkaisulle määritellään YleisöKoodi. Hyödynnetään nykyisiä tiedonkeruukäsikirjan määrittelyitä, jotka yhteneväisiä myös Julkaisufoorumin määrittelyn kanssa</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="EmojulkaisuntyyppiKoodi" type="julkaisut:EmojulkaisuntyyppiKoodiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Määritellään julkaisun alusta ja hyödynnetään mahdollisuuksien mukaan tiedonkeruukäsikirjan määritelmiä. Lehti sisältää tieteelliset aikakauslehdet, ammattilehdet. Kokoomateos sisältää tieteelliset kokoomateokset, tieteelliset vuosikirjat ja vastaavat, ammatilliset käsi- tai opaskirjat, ammatilliset tietojärjestelmät tai kokoomateokset, oppikirja-aineistot, lyhyet ensyklopediatekstit. Konferenssialusta sisältää konferenssin painetut tai julkisesti saatavilla olevat julkaisut, ns. proceedings julkaisut.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ArtikkelityyppiKoodi" type="julkaisut:ArtikkelityyppiKoodiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Artikkelin tarkempi määrittely. Muu artikkeli sisältää muihin luokkiin kuulumattomat, muodoltaan uudet artikkelit esim. kommenttikontribuutiot, ns. mikroartikkelit. Alkuperäisartikkeli koostuu pääosin julkaisemattomasta materiaalista. Katsausartikkeli perustuu aikaisempiin julkaisuihin aihepiiristä ja niitä esiintyy erityisesti lääke- ja terveystieteiden parissa. Data-artikkeli sisältää ns. data journals julkaisuissa ilmestyneet, tutkimusaineistoja kuvailevat artikkelit.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="VertaisarvioituKytkin" type="julkaisut:KyllaEiTyyppi" minOccurs="0" maxOccurs="1" nillable="true">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Tieto, onko julkaisu vertaisarvioitu. Hyödynnetään tiedonkeruukäsikirjan määritelmää.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="RaporttiKytkin" type="julkaisut:KyllaEiTyyppi" minOccurs="0" maxOccurs="1" nillable="true">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Tieto, onko julkaisu raportti. Raportti sisältää tieteelliseen työhön / tutkimus- ja kehitystyöhön perustuvat julkaistut kehittämis- tai tutkimusraportit taikka selvitykset.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="OpinnayteKoodi" type="julkaisut:OpinnayteKoodiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Tieto, onko julkaisu opinnäytetyö. Hyödynnetään tiedonkeruukäsikirjan määritelmiä. Monografiaväitöskirja sisältää yliopiston sarjoissa ja yliopiston laitossarjoissa julkaistut monografiaväitöskirjat, kustannetut monografiaväitöskirjat tai omakustanteena julkaistut monografiaväitöskirjat. Kokoomaväitöskirja sisältää artikkeliväitöskirjat, vaikka artikkelit olisi jo ilmoitettu omina julkaisuinaan.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							
+							<!-- Tahan paattyvat uudet kentat attribuuttipohjaiselle julkaisutyyppiluokittelulle -->
+							
 							<xs:element name="TieteenalaKoodit" minOccurs="0" maxOccurs="1">
 								<xs:complexType>
 									<xs:sequence>
@@ -212,6 +254,26 @@
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
+
+							<xs:element name="TaiteenalaKoodit" minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="TaiteenalaKoodi" minOccurs="0" maxOccurs="7">
+											<xs:annotation>
+												<xs:documentation xml:lang="fi">1-7 taiteenalaa. Taidealan julkaisulle vähintään yksi arvo on pakollinen</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="julkaisut:TaiteenalaKooditTyyppi">
+														<xs:attribute name="JNro" type="julkaisut:TaideAlaAttribuutti" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>	
+							
 							<xs:element name="KoulutusalaKoodit" minOccurs="0" maxOccurs="1">
 								<xs:complexType>
 									<xs:sequence>
@@ -262,9 +324,41 @@
 							</xs:element>
 							<xs:element name="AvoinSaatavuusKoodi" type="julkaisut:AvoinSaatavuusKoodiTyyppi" minOccurs="0" maxOccurs="1">
 								<xs:annotation>
-									<xs:documentation xml:lang="fi">Julkaisun avoin saatavuus seuraavan luokituksen mukaisesti: ei open access/ open access/open access, rinnakkaistallennettu/ei tietoa</xs:documentation>
+									<xs:documentation xml:lang="fi">Julkaisun avoin saatavuus seuraavan luokituksen mukaisesti: ei open access/ open access/open access, rinnakkaistallennettu/ei tietoa. Taidealan julkaisulle imoitetaan, jos on sovellettavissa raportoitavaan taidealan julkaisuun.</xs:documentation>
 								</xs:annotation>
 							</xs:element>
+							<!-- Uudet elementit avoin saatavuus tiedon laajentamiselle: 							
+							AvoinSaatavuusKytkin
+							LisenssiKoodi
+							AvoinSaatavuusJulkaisumaksu
+							AvoinSaatavuusJulkaisumaksuVuosi							
+							-->
+							<xs:element name="AvoinSaatavuusKytkin" type="julkaisut:KyllaEiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisun tämänhetkinen OA-status kustantajan palvelussa. </xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="JulkaisuKanavaOA" type="julkaisut:JulkaisuKanavaOATyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisukanavan avoin saatavuus.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="LisenssiKoodi" type="julkaisut:LisenssiKoodiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Kustantajan palvelussa sijaitsevan julkaisun lisenssi. </xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="AvoinSaatavuusJulkaisumaksu" type="julkaisut:AvoinSaatavuusJulkaisumaksuTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksaman maksun suuruus, euroa</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="AvoinSaatavuusJulkaisumaksuVuosi" type="julkaisut:VuosiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Organisaation julkaisun avoimesta saatavuudesta kustantajalle maksetun maksun maksuvuosi</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+
 							<xs:element name="EVOjulkaisuKytkin" type="julkaisut:KyllaEiTyyppi"  minOccurs="0" maxOccurs="1" nillable="true">
 								<xs:annotation>
 									<xs:documentation xml:lang="fi">Ns. EVO-hakemukseen (erityisvaltionosuushakemus) sosiaali- ja terveysministeriölle tulevat artikkelit</xs:documentation>
@@ -278,12 +372,17 @@
 							<xs:element name="RinnakkaistallennettuKytkin" type="julkaisut:KyllaEiTyyppi"  minOccurs="0" maxOccurs="1" nillable="true">
 								<xs:annotation>
 									<xs:documentation xml:lang="fi">Julkaisu rinnakkaistallennettu</xs:documentation>
-								</xs:annotation>
+								</xs:annotation>							
 							</xs:element>
-								<xs:element name="Rinnakkaistallennettu"  minOccurs="0" maxOccurs="1">
+							
+							<!-- 
+							tasta alkaa uudet/muokatut elementit rinnakkaistallennukseen
+							-->
+							
+							<xs:element name="Rinnakkaistallennettu"  minOccurs="0" maxOccurs="1">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="RinnakkaistallennusOsoiteTeksti" minOccurs="0" maxOccurs="unbounded">
+										<xs:element name="RinnakkaistallennusOsoiteTeksti" minOccurs="0" maxOccurs="1">
 											<xs:annotation>
 												<xs:documentation xml:lang="fi">Tallennetun version verkko-osoite vapaamuotoinen tekstikenttä, pakollinen jos JulkaisuRinnakkaistallennettu=1</xs:documentation>
 											</xs:annotation>
@@ -294,9 +393,57 @@
 												</xs:simpleContent>
 											</xs:complexType>
 										</xs:element>
+										<!-- Uudet elementit (Rinnakkaistallennettu) avoin saatavuus tiedon laajentamiselle alkaa-->
+										<xs:element name="RinnakkaistallennusVersioKoodi"  type="julkaisut:RinnakkaistallennusVersioKoodiTyyppi" minOccurs="0" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation xml:lang="fi">Rinnakkaistallennetun julkaisun versio. </xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="RinnakkaistallennusLisenssiKoodi" type="julkaisut:RinnakkaistallennusLisenssiKoodiTyyppi" minOccurs="0" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation xml:lang="fi">Rinnakkaistallennetun julkaisun lisenssi. </xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="RinnakkaistallennusEmbargoPvm" type="julkaisut:PvmTyyppi" minOccurs="0" maxOccurs="1">
+											<xs:annotation>
+												<xs:documentation xml:lang="fi">Päivämäärä, jolloin rinnakkaistallennetun julkaisun embargoaika raukeaa. </xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<!-- Uudet elementit (Rinnakkaistallennettu) avoin saatavuus tiedon laajentamiselle loppuu-->
 									</xs:sequence>
 								</xs:complexType>
-							</xs:element>	
+							</xs:element>
+							
+							<!-- Uudet elementit (Preprinttallennettu) avoin saatavuus tiedon laajentamiselle alkaa-->
+							<xs:element name="PreprintKytkin" type="julkaisut:KyllaEiTyyppi" minOccurs="0" maxOccurs="1">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Julkaisusta on saatavilla preprint versio organisaatio-tai tieteenalakohtaisessa julkaisuarkistossa. </xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Preprinttallennetut"  minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Preprinttallennus" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="PreprintLisenssiKoodi" type="julkaisut:PreprintLisenssiKoodiTyyppi" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="fi">Preprint julkaisun lisenssi. </xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="PreprintOsoiteTeksti" type="julkaisut:PysyvaOsoiteTekstiTyyppi" minOccurs="0" maxOccurs="1">
+														<xs:annotation>
+															<xs:documentation xml:lang="fi">Organisaatio- tai tieteenalakohtaisen julkaisuarkiston preprint version verkko-osoite (esim. URN). </xs:documentation>
+														</xs:annotation>
+													</xs:element>								
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<!-- Uudet elementit (Preprinttallennettu) avoin saatavuus tiedon laajentamiselle loppuu-->	
+							
 							<xs:element name="DOI" type="julkaisut:DOITyyppi" minOccurs="0" maxOccurs="1">
 								<xs:annotation>
 									<xs:documentation xml:lang="fi">DOI-tunniste</xs:documentation>
@@ -318,10 +465,10 @@
 								</xs:annotation>
 							</xs:element>
 							
-							<xs:element name="Tekijat">
+							<xs:element name="Tekijat" minOccurs="0" maxOccurs="1">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="Tekija" minOccurs="1" maxOccurs="unbounded">
+										<xs:element name="Tekija" minOccurs="0" maxOccurs="unbounded">
 											<xs:complexType>
 												<xs:sequence>
 													<xs:element name="Sukunimi" type="julkaisut:NimiTyyppi" minOccurs="1" maxOccurs="1"/>
@@ -342,6 +489,7 @@
 														</xs:complexType>
 													</xs:element>
 													<xs:element name="ORCID" type="julkaisut:ORCIDTyyppi" minOccurs="0" maxOccurs="1"/>
+													<xs:element name="Rooli" type="julkaisut:RooliKooditTyyppi" minOccurs="0" maxOccurs="1"></xs:element>
 												</xs:sequence>
 											</xs:complexType>
 										</xs:element>
@@ -363,7 +511,67 @@
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
-						
+								
+							<xs:element name="Infrastruktuurit" minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Infrastruktuuri" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="TunnisteTeksti" type="julkaisut:TunnisteTekstiTyyppi" minOccurs="1" maxOccurs="1"/>
+													<xs:element name="LahdetietokannanTunnus" type="julkaisut:LahdetietokannanTunnusTyyppi" minOccurs="1" maxOccurs="1"/>
+													<xs:element name="InfrastruktuuriOrgTunnus" type="julkaisut:InfrastruktuuriOrganisaatioTunnusTyyppi" minOccurs="1" maxOccurs="1"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+
+							<xs:element name="Aineistot" minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Aineisto" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="TunnisteTeksti" type="julkaisut:TunnisteTekstiTyyppi" minOccurs="1" maxOccurs="1"/>
+													<xs:element name="LahdetietokannanTunnus" type="julkaisut:LahdetietokannanTunnusTyyppi" minOccurs="1" maxOccurs="1"/>
+													<xs:element name="DOI" type="julkaisut:DOITyyppi" minOccurs="1" maxOccurs="1"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>	
+							
+	
+							<xs:element name="TaidealanTyyppiKategoria" type="julkaisut:LisatietoTaidealanTyyppiKategoriaTyyppi" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="fi">Koodiston mukainen taidealan tyyppikategoria</xs:documentation>
+								</xs:annotation>
+							</xs:element>							
+	
+	
+							<xs:element name="Lisatiedot" minOccurs="0" maxOccurs="1">							
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Lisatieto" minOccurs="0" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation xml:lang="fi">Lisätietokenttä, jonka attribuuteilla voidaan ilmoittaa tietomallin kentille lisätietoja.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:simpleContent>
+												<xs:extension base="julkaisut:LisatietoTyyppi">
+													<xs:attribute name="tyyppi" type="julkaisut:LisatietoAttribuutti" use="required"/>
+												</xs:extension>
+											</xs:simpleContent>
+										</xs:complexType>											
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+
+				
 							<xs:element name="YhteisJulkaisu" minOccurs="0" maxOccurs="1">
 								<xs:complexType>
 									<xs:sequence>
@@ -376,15 +584,7 @@
 								</xs:complexType>
 							</xs:element>
 							
-						</xs:sequence>
-						
-						<!--
-						<xs:assert test="if(contains('A1 A2 A3 A4 B1 B2 B3 C1 C2',julkaisut:JulkaisutyyppiKoodi)) then (julkaisut:ISBN or julkaisut:ISSN) else true()">
-							<xs:annotation>
-								<xs:documentation>ISBN tai ISSN on pakollinen julkaisutyypeille A1, A2, A3, A4, B1, B2, B3, C1, C2</xs:documentation>
-							</xs:annotation>
-						</xs:assert>
-						-->
+						</xs:sequence>	
 						
 					</xs:complexType>
 				</xs:element>
