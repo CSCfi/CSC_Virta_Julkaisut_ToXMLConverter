@@ -465,7 +465,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "CSC_VIRTA_JulkaisutForm";
-            this.Text = "CSC VIRTA Julkaisutietojen CSV-XML-työkalu (versio 1.3.3 20.01.2020)";
+            this.Text = "CSC VIRTA Julkaisutietojen CSV-XML-työkalu (versio 1.3.4 10.11.2021)";
+            this.Load += new System.EventHandler(this.CSC_VIRTA_JulkaisutForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.LahdeDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.XMLdataGridView)).EndInit();
             this.menuStrip1.ResumeLayout(false);

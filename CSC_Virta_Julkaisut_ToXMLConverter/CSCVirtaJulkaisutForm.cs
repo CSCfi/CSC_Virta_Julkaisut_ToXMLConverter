@@ -442,7 +442,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
             String[] CSVSarakkeet_utf_vaarin = null;
 
 
-            if (getVuosi() == 2016 || getVuosi() == 2017 || getVuosi() == 2018 || getVuosi() == 2019 || getVuosi() == 2020)
+            if (getVuosi() == 2016 || getVuosi() == 2017 || getVuosi() == 2018 || getVuosi() == 2019 || getVuosi() == 2020 || getVuosi() == 2021)
             {   
                 // Jos amk
                 if ( OnkoAMK(getOrganisaatioKoodi()) ) {
@@ -2548,7 +2548,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                                                 num_ok = true;
                                             }
 
-                                            if ((getVuosi() == 2016 || getVuosi() == 2017 || getVuosi() == 2018 || getVuosi() == 2019 || getVuosi() == 2020 || getVuosi() == 2021) && num == 64)
+                                            if ((getVuosi() == 2016 || getVuosi() == 2017 || getVuosi() == 2018 || getVuosi() == 2019 || getVuosi() == 2020 || getVuosi() == 2021 || getVuosi() == 2022) && num == 64)
                                             {
                                                 num_ok = true;
                                             }
@@ -3561,9 +3561,9 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
         {
             string[] koodit = arvo.Split(';');  // Jos tulee lista ; eroteltuja koodiarvoja
 
-            // A1 A2 A4 B1 B2 B3  
-            // Poistettu D1 13.2.2016
-            string[] ISSNPakollisuusJosJulkaisuTyyppiKoodi = { "A1", "A2", "A4", "B1", "B2", "B3" };
+            // A1 A2 B1 B2 B3  
+            // Poistettu D1 13.2.2016, poistettu A4 29.11.2021
+            string[] ISSNPakollisuusJosJulkaisuTyyppiKoodi = { "A1","A2", "B1", "B2", "B3" };
 
             foreach (string koodi in koodit)
             {
@@ -3587,7 +3587,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
 
             foreach (string koodi in koodit)
             {
-                if (Array.Exists(LehdenNimiPakollisuusJosJulkaisuTyyppiKoodi, element => element == koodi) && (vuosi == 2017 || vuosi == 2018 || vuosi == 2019 || vuosi == 2020))
+                if (Array.Exists(LehdenNimiPakollisuusJosJulkaisuTyyppiKoodi, element => element == koodi) && (vuosi == 2017 || vuosi == 2018 || vuosi == 2019 || vuosi == 2020 || vuosi == 2021))
                 {
                     return true;  // Eli Lehden nimi on pakollinen				
                 }
@@ -3607,7 +3607,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
             string[] koodit = julkaisutyyppit.Split(';');  // Tulee lista ; eroteltuja koodiarvoja
 
             // B3, A4
-            string[] ISSN_tai_ISBN_pakollinen = { "B3","A4", "C2"  };
+            string[] ISSN_tai_ISBN_pakollinen = { "B3","A4", "C2" };
 
             foreach (string koodi in koodit)
             {
@@ -3615,7 +3615,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                 {
                         if ((isbn.Trim().Length == 0) && (issn.Trim().Length == 0))
                         {
-                            return true;  // eli ISSN tai ISBN on pakollinen julkaisutyypille A4, B3 ja C2											
+                            return true;  // eli ISSN tai ISBN on pakollinen julkaisutyypille A1, A4, B3 ja C2 -- A1 lisätty 9.11.2021										
                         }
                         
                 }
@@ -3673,7 +3673,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     return true;  // Eli Kustantaja nimi on pakollinen				
                 }
 
-                if (Array.Exists(KustantajaJulkaisuTyyppiKoodi2017, element => element == koodi) && (vuosi == 2017 || vuosi == 2018 || vuosi == 2019 || vuosi == 2020))
+                if (Array.Exists(KustantajaJulkaisuTyyppiKoodi2017, element => element == koodi) && (vuosi == 2017 || vuosi == 2018 || vuosi == 2019 || vuosi == 2020 || vuosi == 2021))
                 {
                     return true;  // Eli Kustantaja nimi on pakollinen				
                 }
@@ -3701,7 +3701,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     return true;  // eli on pakollinen									
                 }
 
-                if (Array.Exists(Onpakollinen2017, element => element == koodi) && (vuosi == 2017 || vuosi == 2018 || vuosi == 2019 || vuosi == 2020))
+                if (Array.Exists(Onpakollinen2017, element => element == koodi) && (vuosi == 2017 || vuosi == 2018 || vuosi == 2019 || vuosi == 2020 || vuosi == 2021))
                 {
                     return true;  // eli on pakollinen									
                 }
@@ -4710,23 +4710,25 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
 
                         if (val)
                         {                                                   
-                            // Myös ISBN tyhjä
-                            if (rivi.Cells[13].Value.ToString().Trim().Length == 0)
+                            //Jos ISSN tyhjä
+                            if (rivi.Cells[18].Value.ToString().Trim().Length == 0)
                             {
                                 XMLdataGridView.Rows[num].Cells[18].Style.BackColor = Color.Red;
-                                XMLdataGridView.Rows[num].Cells[13].Style.BackColor = Color.Red;
+                                //XMLdataGridView.Rows[num].Cells[13].Style.BackColor = Color.Red;
 
                                 XMLdataGridView.Rows[num].Cells[26].Style.BackColor = Color.Red;
-                                TallennaXMLButton.Enabled = false;                                                              
+                                TallennaXMLButton.Enabled = false;
 
-                                virheita += "ISSN tai ISBN on pakollinen jos julkaisutyyppi on " + rivi.Cells[26].Value.ToString() + " rivillä " + (num + 1) + virhejulkaisuorgtunnus + ".\n\r\n\r";
+                                //virheita += "ISSN tai ISBN on pakollinen jos julkaisutyyppi on " + rivi.Cells[26].Value.ToString() + " rivillä " + (num + 1) + virhejulkaisuorgtunnus + ".\n\r\n\r";
+                                virheita += "ISSN on pakollinen jos julkaisutyyppi on " + rivi.Cells[26].Value.ToString() + " rivillä " + (num + 1) + virhejulkaisuorgtunnus + ".\n\r\n\r";
                                
                                 virheIlmoitus2();
 
                                 virheRivi.Add(num + 1);
                                 virheSarake.Add(18);
 
-                                RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "ISSN tai ISBN on pakollinen jos julkaisutyyppi ", rivi.Cells[26].Value.ToString()); 
+                                //RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "ISSN tai ISBN on pakollinen jos julkaisutyyppi ", rivi.Cells[26].Value.ToString());
+                                RekisteroiVirheet("VIRHE", rivi.Cells[4].Value.ToString().Trim(), (num + 1).ToString(), "ISSN on pakollinen jos julkaisutyyppi ", rivi.Cells[26].Value.ToString()); 
 
                                 dgvc[18].HeaderCell.Style.BackColor = Color.Red;  // ISSN sarake                              
                                 dgvc[26].HeaderCell.Style.BackColor = Color.Red;  // Julkaisutyyppi sarake 
@@ -4913,7 +4915,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
 
 
                     // Julkaisutyyppi koodilla "E1" Lehden nimi tai Emojulkaisun nimi pakollinen vuodesta 2017 alkaen
-                    if ((rivi.Cells[26] != null) && (rivi.Cells[26].Value.ToString().Trim() == "E1") && (vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020))
+                    if ((rivi.Cells[26] != null) && (rivi.Cells[26].Value.ToString().Trim() == "E1") && (vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021 || vuosiIlmo == 2022))
                     {
                         Boolean val = JosJulkaisuTyyppille_LehdenNimi_tai_EmojulkaisunNimi_pakollinen(rivi.Cells[26].Value.ToString().Trim(), rivi.Cells[17].Value.ToString().Trim(), rivi.Cells[24].Value.ToString().Trim());
 
@@ -4996,7 +4998,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     }
 
 
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021)
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021 || vuosiIlmo == 2022)
                     {
 
                         // Tekijän sukunimi on pakollinen
@@ -5209,7 +5211,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     }
 
                     // JulkaisunKieliKoodi 2016  indeksi 34 => 32
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020)
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021 || vuosiIlmo == 2022)
                     {
                         // Kieli koodin oikeellisuus
                         if ((rivi.Cells[31] != null) && (rivi.Cells[31].Value.ToString().Length > 0))
@@ -5611,7 +5613,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     }
 
                     // JulkaisunKansainvalisyysKytkin Indeksi 33 => 30 2016
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020)
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021 || vuosiIlmo == 2022)
                     {
                         // JulkaisunKansainvalisyysKytkin oltava numeerinen 0 tai 1
                         if ((rivi.Cells[30] != null) || (rivi.Cells[30].Value.ToString().Length > 0))
@@ -5774,7 +5776,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     }
 
                     // AvoinSaatavuusKoodi Indeksi 35 => 32 2016
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021)
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021 || vuosiIlmo == 2022)
                     {
                         // AvoinSaatavuusKoodi oltava numeerinen 0 tai 1
                         if ((rivi.Cells[32] != null) || (rivi.Cells[32].Value.ToString().Length > 0))
@@ -5984,7 +5986,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     }
 
                     // edit 2021-02-23 indeksit muutettu 36 -> 38, koska lisatty uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021)
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021 || vuosiIlmo == 2022)
                     {
 
                         if ((rivi.Cells[38].Value.ToString().Trim().Length > 0))
@@ -6077,7 +6079,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     }
 
                     // edit 2021-02-23 indeksit muutettu 37 -> 39, koska lisatty uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021)
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021 || vuosiIlmo == 2022)
                     {
                         if ((rivi.Cells[39].Value.ToString().Trim().Length > 0))
                         {
@@ -6158,7 +6160,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
                     }
 
                     // edit 2021-02-23 indeksit muutettu 42 -> 44, koska lisatty uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021)
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021 || vuosiIlmo == 2022)
                     {
                         // Tarkista ORCID
                         if ((rivi.Cells[44].Value.ToString().Trim().Length > 0))
@@ -6213,7 +6215,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
 
                     // YhteisjulkaisuYritysKytkin
                     // edit indeksit muutettu 33 -> 35, koska lisatty uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021)
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021 || vuosiIlmo == 2022)
                     {
                         // YhteisjulkaisuYritysKytkin oltava numeerinen 0 tai 1
                         if ((rivi.Cells[35] != null) || (rivi.Cells[35].Value.ToString().Length > 0))
@@ -6285,7 +6287,7 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
 
                     // RinnakkaistallennettuKytkin
                     // edit 2021-02-23 indeksit muutettu 34 -> 36 ja 35 -> 37, koska lisatty uudet sarakkeet AvoinSaatavuusKytkin ja JulkaisukanavaOA
-                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021)
+                    if (vuosiIlmo == 2016 || vuosiIlmo == 2017 || vuosiIlmo == 2018 || vuosiIlmo == 2019 || vuosiIlmo == 2020 || vuosiIlmo == 2021 || vuosiIlmo == 2022)
                     {
                         // RinnakkaistallennettuKytkin on oltava numeerinen 0 tai 1
                         if ((rivi.Cells[36] != null) || (rivi.Cells[36].Value.ToString().Length > 0))
@@ -6970,7 +6972,12 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
 
         }
 
-        
+        private void CSC_VIRTA_JulkaisutForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
         //  Loppu slut! Stig upp å gaa ut ...
 
     } // ... ja kaikki hyvä myös loppuu aikanaan ...
