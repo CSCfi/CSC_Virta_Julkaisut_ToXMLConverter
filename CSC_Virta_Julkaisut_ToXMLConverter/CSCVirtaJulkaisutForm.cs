@@ -3542,7 +3542,8 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
 
             // A3 A4 B2 B3 C1  
             // Poistettu D2  D5  E2   13.2.2016
-            string[] ISBNPakollisuusJosJulkaisuTyyppiKoodi = { "A3", "A4", "B2", "B3", "C1" };
+            // poistettu  "A3", "A4", "B2", "B3", "C1" 19.2.2022
+            string[] ISBNPakollisuusJosJulkaisuTyyppiKoodi = { };
 
             foreach (string koodi in koodit)
             {
@@ -3562,8 +3563,9 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
             string[] koodit = arvo.Split(';');  // Jos tulee lista ; eroteltuja koodiarvoja
 
             // A1 A2 B1 B2 B3  
-            // Poistettu D1 13.2.2016, poistettu A4 29.11.2021
-            string[] ISSNPakollisuusJosJulkaisuTyyppiKoodi = { "A1","A2", "B1", "B2", "B3" };
+            // Poistettu D1 13.2.2016, poistettu A4 , 29.11.2021
+            // Poistettu B2 ja B3 19.1.2022
+            string[] ISSNPakollisuusJosJulkaisuTyyppiKoodi = { "A1","A2", "B1" };
 
             foreach (string koodi in koodit)
             {
@@ -3602,12 +3604,13 @@ namespace CSC_Virta_Julkaisut_ToXMLConverter
 
 
         // Onko validi Julkaisutyyppi Koodi B3 tai A4 ISBN tai ISSN pakollinen 
+        // Päivitetty tyyppilista 19.1.2022
         private Boolean JosJulkaisuTyyppille_ISBN_tai_ISSN_pakollinen(string julkaisutyyppit, string isbn, string issn)
         {
             string[] koodit = julkaisutyyppit.Split(';');  // Tulee lista ; eroteltuja koodiarvoja
 
             // B3, A4
-            string[] ISSN_tai_ISBN_pakollinen = { "B3","A4", "C2" };
+            string[] ISSN_tai_ISBN_pakollinen = {"A3", "B2", "B3","A4", "C1", "C2" };
 
             foreach (string koodi in koodit)
             {
