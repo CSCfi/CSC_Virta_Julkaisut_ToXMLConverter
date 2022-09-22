@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CSC")]
 [assembly: AssemblyProduct("CSC_Virta_Julkaisut_ToXMLConverter")]
-[assembly: AssemblyCopyright("Copyright ©  2016, 2017, 2018, 2019, 2020, 2021")]
+[assembly: AssemblyCopyright("Copyright ©  2016, 2017, 2018, 2019, 2020, 2021, 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
